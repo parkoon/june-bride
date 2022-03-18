@@ -3,28 +3,23 @@ import emotionReset from 'emotion-reset'
 
 const defaultStyle = css`
   ${emotionReset}
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+
+  html {
     font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
     font-size: 14px;
-  }
-  html,
-  body {
-    height: 100%;
   }
 
   body {
     overflow-x: hidden;
+    color: rgb(29, 29, 31);
+    letter-spacing: -0.05em;
   }
-
-  a,
-  a:hover {
-    color: inherit;
+  p {
+    line-height: 1.6;
+  }
+  a {
+    color: rgb(29, 29, 31);
     text-decoration: none;
-    cursor: pointer;
   }
 `
 
