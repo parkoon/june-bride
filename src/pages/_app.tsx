@@ -1,9 +1,10 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Image from 'next/image'
 
 import GlobalStyle from '@styles/global-style'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function JunBride({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -11,9 +12,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>6월의 신부</title>
       </Head>
       <GlobalStyle />
+
+      <div style={{ width: 200, height: 300, position: 'relative' }}>
+        <Image src="/images/landing.jpg" alt="landing" layout="fill" />
+      </div>
       <Component {...pageProps} />
     </>
   )
 }
 
-export default MyApp
+export default JunBride
