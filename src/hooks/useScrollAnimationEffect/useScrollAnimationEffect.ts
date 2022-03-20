@@ -19,7 +19,7 @@ function useScrollAnimationEffect() {
     prevScrollHeight.current = getPrevScrollHeight(currentScene)
 
     if (
-      window.scrollY >
+      window.scrollY >=
       prevScrollHeight.current + window.innerHeight * SCENE[currentScene].long
     ) {
       if (currentScene > SCENE.length - 1) {
