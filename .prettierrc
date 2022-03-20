@@ -3,7 +3,12 @@
   "tabWidth": 2,
   "semi": false,
   "singleQuote": true,
-  "importOrder": ["^@components/(.*)$", "^@styles/(.*)$", "^[./]"],
+  "importOrder": [
+    "^@components/(.*)$",
+    "^@hooks/(.*)$",
+    "^@styles/(.*)$",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
