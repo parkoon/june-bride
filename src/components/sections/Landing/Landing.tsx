@@ -8,13 +8,15 @@ import {
 import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
+import LandingBox from './LandingBox'
 import LandingImage from './LandingImage'
 import LandingIntroMessage from './LandingIntroMessage'
 
 const Wrapper = styled.section`
   height: 500vh;
 
-  z-index: -99;
+  /* background: #000; */
+  /* z-index: -99; */
 `
 
 function Landing() {
@@ -27,9 +29,11 @@ function Landing() {
     y: 20,
   })
 
-  // const { currentScene } = useCurrentScene()
+  const [landingBoxScale, setLandingBoxScale] = useState({ x: 1, y: 1 })
 
-  // const isLandingScene = SCENE[currentScene]?.id === LANDING_SCENE_ID
+  const { currentScene } = useCurrentScene()
+
+  const isLandingScene = SCENE[currentScene]?.id === LANDING_SCENE_ID
 
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, currentOffsetY, scrollHeight } = detail
@@ -44,6 +48,7 @@ function Landing() {
       })
     )
 
+    // Intro Message Effect
     setIntroMessageTransition({
       opacity: calcValues({
         values: [1, 0, { start: 0, end: 0.3 }],
@@ -56,7 +61,20 @@ function Landing() {
         currentOffsetY,
       }),
     })
-    // }
+
+    // Landing Box Effect
+    setLandingBoxScale({
+      x: calcValues({
+        values: [1, 1 * (120 / window.innerWidth), { start: 0.7, end: 1 }],
+        scrollHeight,
+        currentOffsetY,
+      }),
+      y: calcValues({
+        values: [1, 1 * (120 / window.innerHeight), { start: 0.7, end: 1 }],
+        scrollHeight,
+        currentOffsetY,
+      }),
+    })
   }
 
   useEffect(() => {
@@ -69,16 +87,16 @@ function Landing() {
     }
   }, [])
 
-  console.log('introMessageTransition', introMessageTransition)
-
   return (
     <Wrapper id={LANDING_SCENE_ID} ref={wrapper}>
-      <LandingImage
+      {/* <LandingImage
         src="/images/landing.jpg"
         alt="landing-image"
         scale={imageScale}
       />
-      <LandingIntroMessage {...introMessageTransition} />
+      <LandingIntroMessage {...introMessageTransition} /> */}
+
+      <LandingBox {...landingBoxScale} show={isLandingScene} />
     </Wrapper>
   )
 }
