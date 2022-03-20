@@ -12,10 +12,6 @@ function JunBride({ Component, pageProps }: AppProps) {
         <title>6월의 신부</title>
       </Head>
       <GlobalStyle />
-
-      <div style={{ width: 200, height: 300, position: 'relative' }}>
-        <Image src="/images/landing.jpg" alt="landing" layout="fill" />
-      </div>
       <Component {...pageProps} />
     </>
   )
