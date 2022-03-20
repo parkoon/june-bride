@@ -14,9 +14,6 @@ const defaultStyle = css`
     color: rgb(29, 29, 31);
     letter-spacing: -0.05em;
   }
-  p {
-    line-height: 1.6;
-  }
   a {
     color: rgb(29, 29, 31);
     text-decoration: none;
