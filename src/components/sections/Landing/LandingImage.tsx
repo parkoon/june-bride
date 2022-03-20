@@ -2,12 +2,12 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 
 const Wrapper = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 100vh;
   width: 100%;
 
-  transition: transform 0.3 ease-in-out;
+  transition: transform 0.1 ease-in-out;
 `
 
 type Props = {
