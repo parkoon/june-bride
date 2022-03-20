@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import Image from 'next/image'
+
+import CurrentSceneContextProvider from '@hooks/useScrollAnimationEffect/context'
 
 import GlobalStyle from '@styles/global-style'
 
@@ -12,7 +13,9 @@ function JunBride({ Component, pageProps }: AppProps) {
         <title>6월의 신부</title>
       </Head>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <CurrentSceneContextProvider>
+        <Component {...pageProps} />
+      </CurrentSceneContextProvider>
     </>
   )
 }

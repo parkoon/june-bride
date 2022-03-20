@@ -1,25 +1,24 @@
 import type { NextPage } from 'next'
-import { useEffect } from 'react'
 
 import EmptyBox from '@components/common/FakeBox'
+import Layout from '@components/common/Layout'
+import Landing from '@components/sections/Landing'
+
+import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
+import { EMPTY_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
 
 const Home: NextPage = () => {
-  useEffect(() => {
-    const handleScroll = () => {
-      console.log(window.scrollY)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  useScrollAnimationEffect()
   return (
-    <div>
-      Hello world
-      <EmptyBox opacity={0.1} />
-      <EmptyBox opacity={0.2} />
+    <Layout>
+      <Landing />
+      <EmptyBox opacity={0.1} id={EMPTY_SCENE_ID}>
+        <button style={{ width: 200, height: 200 }} type="button">
+          클릭 테스트
+        </button>
+      </EmptyBox>
       <EmptyBox opacity={0.3} />
-    </div>
+    </Layout>
   )
 }
 
