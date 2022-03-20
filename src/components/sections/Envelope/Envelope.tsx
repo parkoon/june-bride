@@ -30,7 +30,6 @@ function Envelope() {
   const [iconTransition, setIconTransition] = useState({ scale: 1, y: 0 })
 
   const handleScroll = ({ detail }: any) => {
-    console.log('ok...')
     const { scrollRatio, currentOffsetY, scrollHeight } = detail
 
     console.log('box.current.clientHeight', 120 * 3.25)
