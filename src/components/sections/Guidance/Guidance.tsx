@@ -44,29 +44,21 @@ function Guidance() {
           key={color}
           primary={color}
           gap={(DUMMY.length - index) * GAP}
+          header={{
+            title: 'lorem',
+            description: 'Lorem ipsum dolor \n ipsum sit.',
+          }}
+          body={{
+            title: 'lorem',
+            description: 'Lorem ipsum dolor \n ipsum sit.',
+          }}
         >
-          <GuidanceArticle.Header
-            title="헤더"
-            description={'여기는 설명이라는 \n 사실이다.'}
-          />
-          <GuidanceArticle.Body
-            title="바디."
-            description={'여기는 설명이라는 \n 사실이다.'}
-          >
-            CONTENT
-          </GuidanceArticle.Body>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+          nostrum repudiandae, velit nam incidunt numquam dicta aspernatur modi
+          consectetur possimus mollitia dignissimos blanditiis earum porro
+          laudantium nemo commodi ipsam maiores?
         </GuidanceArticle>
       ))}
-
-      {/* <section style={{ bottom: '-770px', position: 'sticky' }}>
-        <div style={{ height: '888px', background: 'green' }}>hello</div>
-      </section>
-      <section style={{ bottom: '-787px', position: 'sticky' }}>
-        <div style={{ height: '888px', background: 'brown' }}>hello</div>
-      </section>
-      <section style={{ bottom: '-814px', position: 'sticky' }}>
-        <div style={{ height: '888px', background: 'red' }}>hello</div>
-      </section> */}
     </Wrapper>
   )
 }

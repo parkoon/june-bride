@@ -72,10 +72,18 @@ const Wrapper = styled.article<{ primary?: string }>`
 
 type Props = {
   children: React.ReactNode
+  header: {
+    title: string
+    description: string
+  }
+  body: {
+    title: string
+    description: string
+  }
   primary?: string
   gap?: number
 }
-function GuidanceArticle({ children, primary, gap = 0 }: Props) {
+function GuidanceArticle({ children, header, body, primary, gap = 0 }: Props) {
   const [bottom, setBottom] = useState<number>(0)
 
   const wrapper = useRef<HTMLElement>(null)
@@ -91,44 +99,24 @@ function GuidanceArticle({ children, primary, gap = 0 }: Props) {
       ref={wrapper}
       style={{ bottom: `-${bottom - gap}px` }}
     >
-      <Container>{children}</Container>
+      <Container>
+        <Header>
+          <h3>
+            <span>{header.title}</span>
+            <br />
+            <p>{header.description}</p>
+          </h3>
+        </Header>
+
+        <Body>
+          <span>{body.title}</span>
+          <p>{body.description}</p>
+
+          <BodyContent>{children}</BodyContent>
+        </Body>
+      </Container>
     </Wrapper>
   )
 }
-
-type HeaderProps = {
-  title?: string
-  description?: string
-}
-function GuidanceArticleHeader({ title, description }: HeaderProps) {
-  return (
-    <Header>
-      <h3>
-        <span>{title}</span>
-        <br />
-        <p>{description}</p>
-      </h3>
-    </Header>
-  )
-}
-
-type BodyProps = {
-  title?: string
-  description?: string
-  children?: React.ReactNode
-}
-function GuidanceArticleBody({ title, description, children }: BodyProps) {
-  return (
-    <Body>
-      <span>{title}</span>
-      <p>{description}</p>
-
-      <BodyContent>{children}</BodyContent>
-    </Body>
-  )
-}
-
-GuidanceArticle.Header = GuidanceArticleHeader
-GuidanceArticle.Body = GuidanceArticleBody
 
 export default GuidanceArticle
