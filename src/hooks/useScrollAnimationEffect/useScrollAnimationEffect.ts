@@ -10,13 +10,17 @@ function useScrollAnimationEffect() {
   const prevScrollHeight = useRef<number>(0)
 
   const setCurrentSceneElem = useCallback(() => {
-    currentSceneElem.current = document.getElementById(
-      SCENE[currentScene].id
-    ) as HTMLElement
+    if (SCENE[currentScene]) {
+      currentSceneElem.current = document.getElementById(
+        SCENE[currentScene].id
+      ) as HTMLElement
+    }
   }, [currentScene])
 
   const updateCurrentScene = useCallback(() => {
     prevScrollHeight.current = getPrevScrollHeight(currentScene)
+
+    if (!SCENE[currentScene]) return
 
     if (
       window.scrollY >=
