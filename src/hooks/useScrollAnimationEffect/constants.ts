@@ -1,13 +1,11 @@
 export const LANDING_SCENE_ID = 'landing'
 export const ENVELOPE_SCENE_ID = 'envelope'
-export const GUIDANCE_SCENE_ID = 'guidance'
 export const EMPTY_SCENE_ID = 'empty'
 
 export type Scene =
   | typeof LANDING_SCENE_ID
   | typeof EMPTY_SCENE_ID
   | typeof ENVELOPE_SCENE_ID
-  | typeof GUIDANCE_SCENE_ID
 
 export const SCENE = [
   // {
@@ -21,9 +19,5 @@ export const SCENE = [
   {
     id: EMPTY_SCENE_ID,
     long: 1,
-  },
-  {
-    id: GUIDANCE_SCENE_ID,
-    long: 6,
   },
 ]

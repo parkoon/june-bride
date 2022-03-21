@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
-import { useEffect, useRef, useState } from 'react'
-
-import { GUIDANCE_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
+import { useRef } from 'react'
 
 import GuidanceArticle from './GuidanceArticle'
 import GuidanceIntro from './GuidanceIntro'
@@ -14,29 +12,8 @@ const GAP = 25
 function Guidance() {
   const wrapper = useRef<HTMLElement>(null)
 
-  const [relative, setRelative] = useState(false)
-
-  const handleScroll = ({ detail }: any) => {
-    const { scrollRatio, currentOffsetY, scrollHeight } = detail
-
-    console.log(scrollRatio)
-    if (scrollRatio > 0) {
-      //   setRelative(true)
-      console.log('scroll')
-    }
-  }
-
-  useEffect(() => {
-    if (!wrapper.current) return
-
-    wrapper.current.addEventListener('customscroll', handleScroll)
-
-    return () => {
-      wrapper.current?.removeEventListener('customscroll', handleScroll)
-    }
-  }, [])
   return (
-    <Wrapper ref={wrapper} id={GUIDANCE_SCENE_ID}>
+    <Wrapper ref={wrapper}>
       <GuidanceIntro />
 
       {DUMMY.map((color, index) => (
