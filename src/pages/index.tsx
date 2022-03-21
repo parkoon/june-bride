@@ -1,20 +1,29 @@
+import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 
 import EmptyBox from '@components/common/FakeBox'
 import Layout from '@components/common/Layout'
 import Envelope from '@components/sections/Envelope'
+import Guidance from '@components/sections/Guidance'
 import Landing from '@components/sections/Landing'
 
 import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
-import { EMPTY_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
 
 const Home: NextPage = () => {
   useScrollAnimationEffect()
   return (
     <Layout>
-      <Landing />
+      <Guidance />
+      {/* <Landing />
 
-      <Envelope />
+      <Envelope /> */}
+
+      {/* <EmptyBox opacity={0.1} /> */}
+      {/* <EmptyBox opacity={0.3} /> */}
+      {/* <EmptyBox opacity={0.1} id={EMPTY_SCENE_ID} /> */}
+
+      {/* <Card /> */}
+      {/* <EmptyBox opacity={0.3} /> */}
       {/* <EmptyBox opacity={0.1} id={EMPTY_SCENE_ID}>
         <button style={{ width: 200, height: 200 }} type="button">
           클릭 테스트
