@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import React from 'react'
 
+import { useChangeColorInView } from './hooks'
+
 const Wrapper = styled.div`
   min-height: 100vh;
 
@@ -27,10 +29,12 @@ const Container = styled.div`
   }
 `
 function GuidanceIntro() {
+  const colorTrigger = useChangeColorInView({ threshold: 1 })
+
   return (
     <Wrapper>
       <Container>
-        <h2>
+        <h2 ref={colorTrigger}>
           Lorem, <br />
           ipsum.
         </h2>

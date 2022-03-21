@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
+import { useChangeColorInView } from './hooks'
+
 const Container = styled.div`
   max-width: 329px;
   width: 96%;
@@ -47,7 +49,7 @@ const BodyContent = styled.div`
   margin-top: 40px;
 `
 
-const Wrapper = styled.article<{ primary?: string }>`
+const Wrapper = styled.article<{ color?: string }>`
   position: sticky;
 
   &:not(:last-of-type) {
@@ -55,17 +57,17 @@ const Wrapper = styled.article<{ primary?: string }>`
   }
 
   ${Header} {
-    background: ${({ primary }) => primary};
+    background: ${({ color }) => color};
 
     p {
-      color: ${({ primary }) => primary};
+      color: ${({ color }) => color};
       filter: brightness(47%);
     }
   }
 
   ${Body} {
     span {
-      color: ${({ primary }) => primary};
+      color: ${({ color }) => color};
     }
   }
 `
@@ -80,11 +82,17 @@ type Props = {
     title: string
     description: string
   }
-  primary?: string
+  color?: string
   gap?: number
 }
-function GuidanceArticle({ children, header, body, primary, gap = 0 }: Props) {
+function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
   const [bottom, setBottom] = useState<number>(0)
+
+  const colorTrigger = useChangeColorInView({
+    rootMargin: '0% 0% -30% 0%',
+    threshold: 1,
+    color,
+  })
 
   const wrapper = useRef<HTMLElement>(null)
   useEffect(() => {
@@ -95,12 +103,12 @@ function GuidanceArticle({ children, header, body, primary, gap = 0 }: Props) {
 
   return (
     <Wrapper
-      primary={primary}
+      color={color}
       ref={wrapper}
       style={{ bottom: `-${bottom - gap}px` }}
     >
       <Container>
-        <Header>
+        <Header ref={colorTrigger}>
           <h3>
             <span>{header.title}</span>
             <br />
