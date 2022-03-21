@@ -25,14 +25,11 @@ function Envelope() {
 
   const isEnvelopScene = SCENE[currentScene].id === ENVELOPE_SCENE_ID
 
-  console.log('isEnvelopScene', isEnvelopScene)
-
   const [iconTransition, setIconTransition] = useState({ scale: 1, y: 0 })
 
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, currentOffsetY, scrollHeight } = detail
 
-    console.log('box.current.clientHeight', 120 * 3.25)
     setIconTransition((prev) => ({
       ...prev,
       scale: calcValues({
@@ -44,13 +41,7 @@ function Envelope() {
 
     setIconTransition((prev) => {
       if (!box.current) return prev
-      console.log(
-        'result',
-        window.innerHeight -
-          box.current.offsetTop +
-          box.current.clientHeight -
-          300
-      )
+
       return {
         ...prev,
         y: calcValues({
@@ -80,7 +71,7 @@ function Envelope() {
   }, [])
   return (
     <Wrapper id={ENVELOPE_SCENE_ID} ref={wrapper}>
-      <EnvelopeIcon {...iconTransition} ref={box} show={isEnvelopScene} />
+      <EnvelopeIcon {...iconTransition} ref={box} show={true} />
     </Wrapper>
   )
 }
