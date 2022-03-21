@@ -89,7 +89,7 @@ function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
   const [bottom, setBottom] = useState<number>(0)
 
   const colorTrigger = useChangeColorInView({
-    rootMargin: '0% 0% -30% 0%',
+    rootMargin: '0% 0% -20% 0%',
     threshold: 1,
     color,
   })
