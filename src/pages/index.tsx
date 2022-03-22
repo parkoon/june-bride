@@ -1,12 +1,8 @@
-import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 
-import EmptyBox from '@components/common/FakeBox'
 import Layout from '@components/common/Layout'
-import Envelope from '@components/sections/Envelope'
 import FAQ from '@components/sections/FAQ'
 import Guidance from '@components/sections/Guidance'
-import Landing from '@components/sections/Landing'
 
 import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
 

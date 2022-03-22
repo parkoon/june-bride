@@ -7,7 +7,7 @@ import { useChangeColorInView } from './hooks'
 
 const Container = styled.div`
   max-width: 329px;
-  width: 96%;
+  width: 90%;
   margin: 0 auto;
 `
 
@@ -35,9 +35,11 @@ const Header = styled.header`
   }
 `
 const Body = styled.div`
-  min-height: 63vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  padding: 40px 20px;
+  padding: 40px 0 40px 20px;
 
   background: #fff;
   border-radius: 24px;
@@ -48,7 +50,8 @@ const Body = styled.div`
 `
 
 const BodyContent = styled.div`
-  margin-top: 40px;
+  margin-top: 52px;
+  flex: 1;
 `
 
 const Wrapper = styled.article<{ color?: string }>`

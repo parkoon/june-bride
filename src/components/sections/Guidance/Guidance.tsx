@@ -1,6 +1,6 @@
-import GuidanceArticle from './GuidanceArticle'
 import GuidanceColorWrapper from './GuidanceColorWrapper'
 import GuidanceIntro from './GuidanceIntro'
+import GuidancePhotoGallery from './GuidancePhotoGallery'
 import { GuidanceColorProvider } from './context'
 
 const DUMMY = ['#eb3b5a', '#20bf6b', '#8854d0', '#3867d6']
@@ -11,8 +11,9 @@ function Guidance() {
     <GuidanceColorProvider defaultColor="#fff">
       <GuidanceColorWrapper>
         <GuidanceIntro />
+        <GuidancePhotoGallery />
 
-        {DUMMY.map((color, index) => (
+        {/* {DUMMY.map((color, index) => (
           <GuidanceArticle
             key={color}
             color={color}
@@ -31,7 +32,7 @@ function Guidance() {
             modi consectetur possimus mollitia dignissimos blanditiis earum
             porro laudantium nemo commodi ipsam maiores?
           </GuidanceArticle>
-        ))}
+        ))} */}
       </GuidanceColorWrapper>
     </GuidanceColorProvider>
   )
