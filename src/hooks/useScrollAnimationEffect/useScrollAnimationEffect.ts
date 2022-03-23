@@ -9,41 +9,33 @@ function useScrollAnimationEffect() {
   const currentSceneElem = useRef<HTMLElement>()
   const prevScrollHeight = useRef<number>(0)
 
+  /**
+   * currentScene 이 바뀔 때마다 ref에 currentScene에 맞는 element를 설정
+   */
   const setCurrentSceneElem = useCallback(() => {
-    if (SCENE[currentScene]) {
-      currentSceneElem.current = document.getElementById(
-        SCENE[currentScene].id
-      ) as HTMLElement
-    }
+    currentSceneElem.current = document.getElementById(
+      SCENE[currentScene].id
+    ) as HTMLElement
   }, [currentScene])
 
   const updateCurrentScene = useCallback(() => {
     prevScrollHeight.current = getPrevScrollHeight(currentScene)
 
-    if (!SCENE[currentScene]) return
-
     if (
       window.scrollY >=
       prevScrollHeight.current + window.innerHeight * SCENE[currentScene].long
     ) {
-      if (currentScene > SCENE.length - 1) {
+      // SCENE 의 크기보다 커지지 않도록
+      if (currentScene >= SCENE.length - 1) {
         return
       }
-      setCurrentScene((prev) => {
-        const next = prev + 1
-
-        return next
-      })
+      setCurrentScene((prev) => prev + 1)
     }
 
     if (window.scrollY < prevScrollHeight.current) {
       // 브라우저 바운스 효과로 인해 마이너스가 되는 것을 방지(모바일)
       if (currentScene === 0) return
-      setCurrentScene((prev) => {
-        const next = prev - 1
-
-        return next
-      })
+      setCurrentScene((prev) => prev - 1)
     }
   }, [currentScene, setCurrentScene])
 
@@ -69,7 +61,9 @@ function useScrollAnimationEffect() {
 
   useEffect(() => {
     setCurrentSceneElem()
+
     const handleScroll = () => {
+      console.log(currentScene)
       updateCurrentScene()
       dispatchEvent()
     }
@@ -77,7 +71,7 @@ function useScrollAnimationEffect() {
     window.addEventListener('scroll', handleScroll)
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [updateCurrentScene, setCurrentSceneElem])
+  }, [updateCurrentScene, setCurrentSceneElem, currentScene])
 }
 
 export default useScrollAnimationEffect

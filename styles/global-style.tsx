@@ -4,6 +4,9 @@ import emotionReset from 'emotion-reset'
 const defaultStyle = css`
   ${emotionReset}
 
+  * {
+    box-sizing: border-box;
+  }
   html {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;

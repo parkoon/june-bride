@@ -6,13 +6,14 @@ import FadeInOut from '@components/common/FadeInOut'
 import { useChangeColorInView } from './hooks'
 
 const Container = styled.div`
-  max-width: 329px;
+  /* max-width: 329px; */
   width: 90%;
   margin: 0 auto;
 `
 
 const Header = styled.header`
-  border-radius: 24px;
+  /* TODO. border radius 가 이상함... */
+  border-radius: 48px;
 
   display: flex;
   align-items: center;

@@ -9,50 +9,66 @@ import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
 import EnvelopeIcon from './EnvelopeIcon'
+import EnvelopeWrapper from './EnvelopeWrapper'
 
 const Wrapper = styled.section`
-  height: 600vh;
-
-  background: yellow;
+  height: 500vh;
 `
 
 function Envelope() {
   const wrapper = useRef<HTMLElement>(null)
 
+  const iconRef = useRef<HTMLDivElement>(null)
+
   const box = useRef<HTMLDivElement>(null)
 
-  const { currentScene } = useCurrentScene()
+  const start = useRef<number>(0)
 
-  const isEnvelopScene = SCENE[currentScene].id === ENVELOPE_SCENE_ID
+  const [openEnvelope, setOpenEnvelope] = useState(false)
 
-  const [iconTransition, setIconTransition] = useState({ scale: 1, y: 0 })
+  const [iconTransition, setIconTransition] = useState({
+    scale: 1,
+    y: 0,
+    opacity: 1,
+  })
 
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, currentOffsetY, scrollHeight } = detail
 
+    const scaleRatio = (window.innerWidth * 0.9) / iconRef.current!.clientWidth
+
+    setOpenEnvelope(scrollRatio > 0.6)
+
     setIconTransition((prev) => ({
       ...prev,
       scale: calcValues({
-        values: [1, window.innerWidth / 120, { start: 0, end: 0.5 }],
+        values: [1, scaleRatio, { start: 0, end: 0.5 }],
         currentOffsetY,
         scrollHeight,
       }),
     }))
 
-    setIconTransition((prev) => {
-      if (!box.current) return prev
+    if (!start.current) {
+      start.current =
+        box.current!.offsetTop +
+        (box.current!.clientHeight * scaleRatio - box.current!.clientHeight) / 2
+    }
 
+    setIconTransition((prev) => {
       return {
         ...prev,
         y: calcValues({
-          values: [
-            0,
-            window.innerHeight -
-              box.current.offsetTop +
-              box.current.clientHeight -
-              window.innerWidth / 2, // 계산식 다시 생각하기
-            { start: 0.5, end: 1 },
-          ],
+          values: [0, start.current, { start: 0.5, end: 1 }],
+          currentOffsetY,
+          scrollHeight,
+        }),
+      }
+    })
+    setIconTransition((prev) => {
+      return {
+        ...prev,
+        opacity: calcValues({
+          values: [1, 0, { start: 1, end: 1 }],
           currentOffsetY,
           scrollHeight,
         }),
@@ -71,7 +87,9 @@ function Envelope() {
   }, [])
   return (
     <Wrapper id={ENVELOPE_SCENE_ID} ref={wrapper}>
-      <EnvelopeIcon {...iconTransition} ref={box} show={true} />
+      <EnvelopeWrapper {...iconTransition} ref={box}>
+        <EnvelopeIcon ref={iconRef} open={openEnvelope} />
+      </EnvelopeWrapper>
     </Wrapper>
   )
 }
