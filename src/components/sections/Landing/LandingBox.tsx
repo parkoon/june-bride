@@ -8,21 +8,21 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
 
-  background: #000;
+  background: #111;
+
+  border-radius: 24px;
 `
 
 type Props = {
   x: number
   y: number
-  show: boolean
 }
-function LandingBox({ x, y, show }: Props) {
+function LandingBox({ x, y }: Props) {
   return (
     <Wrapper
       className="landing-box"
       style={{
         transform: `matrix(${x}, 0, 0, ${y}, 0, 0)`,
-        opacity: show ? 1 : 0,
       }}
     />
   )

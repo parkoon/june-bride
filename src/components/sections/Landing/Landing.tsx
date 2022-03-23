@@ -8,6 +8,7 @@ import {
 import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
+import { ENVELOP_WRAPPER_SIZE } from '../Envelope/constants'
 import LandingBox from './LandingBox'
 import LandingImage from './LandingImage'
 import LandingIntroMessage from './LandingIntroMessage'
@@ -22,7 +23,13 @@ const Wrapper = styled.section`
 function Landing() {
   const wrapper = useRef<HTMLElement>(null)
 
+  const { currentScene } = useCurrentScene()
+
+  const [showLandingBox, setShowLandingBox] = useState(false)
+
   const [imageScale, setImageScale] = useState(1)
+
+  const [imageOpacity, setImageOpacity] = useState(1)
 
   const [introMessageTransition, setIntroMessageTransition] = useState({
     opacity: 0,
@@ -31,15 +38,10 @@ function Landing() {
 
   const [landingBoxScale, setLandingBoxScale] = useState({ x: 1, y: 1 })
 
-  const { currentScene } = useCurrentScene()
-
-  const isLandingScene = SCENE[currentScene]?.id === LANDING_SCENE_ID
-
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, currentOffsetY, scrollHeight } = detail
 
     // Landing Image Event
-    // if (scrollRatio < 0.3) {
     setImageScale(
       calcValues({
         values: [1, 1.4, { start: 0, end: 0.3 }],
@@ -62,20 +64,40 @@ function Landing() {
       }),
     })
 
+    setImageOpacity(
+      calcValues({
+        values: [1, 0, { start: 0.5, end: 0.8 }],
+        scrollHeight,
+        currentOffsetY,
+      })
+    )
+
     // Landing Box Effect
     setLandingBoxScale({
       x: calcValues({
-        values: [1, 1 * (120 / window.innerWidth), { start: 0.7, end: 1 }],
+        values: [
+          1,
+          1 * ((ENVELOP_WRAPPER_SIZE - 10) / window.innerWidth),
+          { start: 0.8, end: 1 },
+        ],
         scrollHeight,
         currentOffsetY,
       }),
       y: calcValues({
-        values: [1, 1 * (120 / window.innerHeight), { start: 0.7, end: 1 }],
+        values: [
+          1,
+          1 * ((ENVELOP_WRAPPER_SIZE - 10) / window.innerHeight),
+          { start: 0.8, end: 1 },
+        ],
         scrollHeight,
         currentOffsetY,
       }),
     })
   }
+
+  useEffect(() => {
+    setShowLandingBox(SCENE[currentScene].id === LANDING_SCENE_ID)
+  }, [currentScene])
 
   useEffect(() => {
     if (!wrapper.current) return
@@ -89,14 +111,14 @@ function Landing() {
 
   return (
     <Wrapper id={LANDING_SCENE_ID} ref={wrapper}>
-      {/* <LandingImage
+      {showLandingBox && <LandingBox {...landingBoxScale} />}
+      <LandingImage
         src="/images/landing.jpg"
         alt="landing-image"
         scale={imageScale}
+        opacity={imageOpacity}
       />
-      <LandingIntroMessage {...introMessageTransition} /> */}
-
-      <LandingBox {...landingBoxScale} show={isLandingScene} />
+      <LandingIntroMessage {...introMessageTransition} />
     </Wrapper>
   )
 }

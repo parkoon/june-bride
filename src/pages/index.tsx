@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       {/* <Guidance /> */}
-      {/* <Landing /> */}
+      <Landing />
       <Envelope />
       <Guidance />
       <FAQ />

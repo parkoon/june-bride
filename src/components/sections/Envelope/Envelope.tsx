@@ -20,11 +20,15 @@ function Envelope() {
 
   const iconRef = useRef<HTMLDivElement>(null)
 
+  const { currentScene } = useCurrentScene()
+
   const box = useRef<HTMLDivElement>(null)
 
   const start = useRef<number>(0)
 
   const [openEnvelope, setOpenEnvelope] = useState(false)
+
+  const [showEnvelope, setShowEnvelope] = useState(false)
 
   const [iconTransition, setIconTransition] = useState({
     scale: 1,
@@ -35,7 +39,10 @@ function Envelope() {
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, currentOffsetY, scrollHeight } = detail
 
-    const scaleRatio = (window.innerWidth * 0.9) / iconRef.current!.clientWidth
+    setShowEnvelope(scrollRatio > 0)
+    if (!iconRef.current || !box.current) return
+
+    const scaleRatio = (window.innerWidth * 0.9) / iconRef.current.clientWidth
 
     setOpenEnvelope(scrollRatio > 0.6)
 
@@ -50,8 +57,8 @@ function Envelope() {
 
     if (!start.current) {
       start.current =
-        box.current!.offsetTop +
-        (box.current!.clientHeight * scaleRatio - box.current!.clientHeight) / 2
+        box.current.offsetTop +
+        (box.current.clientHeight * scaleRatio - box.current.clientHeight) / 2
     }
 
     setIconTransition((prev) => {
@@ -77,6 +84,10 @@ function Envelope() {
   }
 
   useEffect(() => {
+    setShowEnvelope(SCENE[currentScene].id === ENVELOPE_SCENE_ID)
+  }, [currentScene])
+
+  useEffect(() => {
     if (!wrapper.current) return
 
     wrapper.current.addEventListener('customscroll', handleScroll)
@@ -87,9 +98,11 @@ function Envelope() {
   }, [])
   return (
     <Wrapper id={ENVELOPE_SCENE_ID} ref={wrapper}>
-      <EnvelopeWrapper {...iconTransition} ref={box}>
-        <EnvelopeIcon ref={iconRef} open={openEnvelope} />
-      </EnvelopeWrapper>
+      {showEnvelope && (
+        <EnvelopeWrapper {...iconTransition} ref={box}>
+          <EnvelopeIcon ref={iconRef} open={openEnvelope} />
+        </EnvelopeWrapper>
+      )}
     </Wrapper>
   )
 }
