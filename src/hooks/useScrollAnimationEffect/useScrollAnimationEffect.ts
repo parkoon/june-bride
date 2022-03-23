@@ -63,7 +63,6 @@ function useScrollAnimationEffect() {
     setCurrentSceneElem()
 
     const handleScroll = () => {
-      console.log(currentScene)
       updateCurrentScene()
       dispatchEvent()
     }
