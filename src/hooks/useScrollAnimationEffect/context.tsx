@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 
+import { SCENE } from './constants'
+
 type Context = {
   setCurrentScene: React.Dispatch<React.SetStateAction<number>>
   currentScene: number
@@ -19,6 +21,16 @@ function CurrentSceneContextProvider({ children }: Props) {
   )
 }
 
-export const useCurrentScene = () => useContext(CurrentSceneContext)
+export const useCurrentScene = (id?: string) => {
+  const { currentScene, setCurrentScene } = useContext(CurrentSceneContext)
+
+  const inScene = SCENE[currentScene].id === id
+
+  return {
+    inScene,
+    currentScene,
+    setCurrentScene,
+  }
+}
 
 export default CurrentSceneContextProvider

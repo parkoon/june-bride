@@ -1,10 +1,7 @@
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
-import {
-  LANDING_SCENE_ID,
-  SCENE,
-} from '@hooks/useScrollAnimationEffect/constants'
+import { LANDING_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
 import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
@@ -15,17 +12,12 @@ import LandingIntroMessage from './LandingIntroMessage'
 
 const Wrapper = styled.section`
   height: 500vh;
-
-  /* background: #000; */
-  /* z-index: -99; */
 `
 
 function Landing() {
   const wrapper = useRef<HTMLElement>(null)
 
-  const { currentScene } = useCurrentScene()
-
-  const [showLandingBox, setShowLandingBox] = useState(false)
+  const { inScene } = useCurrentScene(LANDING_SCENE_ID)
 
   const [imageScale, setImageScale] = useState(1)
 
@@ -96,10 +88,6 @@ function Landing() {
   }
 
   useEffect(() => {
-    setShowLandingBox(SCENE[currentScene].id === LANDING_SCENE_ID)
-  }, [currentScene])
-
-  useEffect(() => {
     if (!wrapper.current) return
 
     wrapper.current.addEventListener('customscroll', handleScroll)
@@ -111,14 +99,18 @@ function Landing() {
 
   return (
     <Wrapper id={LANDING_SCENE_ID} ref={wrapper}>
-      {showLandingBox && <LandingBox {...landingBoxScale} />}
-      <LandingImage
-        src="/images/landing.jpg"
-        alt="landing-image"
-        scale={imageScale}
-        opacity={imageOpacity}
-      />
-      <LandingIntroMessage {...introMessageTransition} />
+      {inScene && (
+        <>
+          <LandingBox {...landingBoxScale} />
+          <LandingImage
+            src="/images/landing.jpg"
+            alt="landing-image"
+            scale={imageScale}
+            opacity={imageOpacity}
+          />
+          <LandingIntroMessage {...introMessageTransition} />
+        </>
+      )}
     </Wrapper>
   )
 }

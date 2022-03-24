@@ -7,9 +7,16 @@ export const SCENE = [
   {
     id: LANDING_SCENE_ID,
     long: 5,
+    animation: true,
   },
   {
     id: ENVELOPE_SCENE_ID,
     long: 5,
+    animation: true,
+  },
+  {
+    id: '',
+    long: 0,
+    animation: false,
   },
 ]
