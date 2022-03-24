@@ -10,15 +10,12 @@ import LandingImage from './LandingImage'
 import LandingIntroMessage from './LandingIntroMessage'
 
 function Landing() {
-  const wrapper = useRef<HTMLElement>(null)
-
   const { inScene, sceneLong } = useCurrentScene(LANDING_SCENE_ID)
 
-  console.log(sceneLong)
-
-  const [imageScale, setImageScale] = useState(1)
-
-  const [imageOpacity, setImageOpacity] = useState(1)
+  const [imageTransition, setImageTransition] = useState({
+    scale: 1,
+    opacity: 1,
+  })
 
   const [introMessageTransition, setIntroMessageTransition] = useState({
     opacity: 0,
@@ -27,39 +24,39 @@ function Landing() {
 
   const [landingBoxScale, setLandingBoxScale] = useState({ x: 1, y: 1 })
 
+  const sectionRef = useRef<HTMLElement>(null)
+
   const handleScroll = ({ detail }: any) => {
-    const { scrollRatio, currentOffsetY, scrollHeight } = detail
+    const { scrollRatio, ...scrollHeightAntCurrentOffsetY } = detail
 
     // Landing Image Event
-    setImageScale(
-      calcValues({
+    setImageTransition((prev) => ({
+      ...prev,
+      scale: calcValues({
         values: [1, 1.4, { start: 0, end: 0.3 }],
-        scrollHeight,
-        currentOffsetY,
-      })
-    )
+        ...scrollHeightAntCurrentOffsetY,
+      }),
+    }))
 
     // Intro Message Effect
     setIntroMessageTransition({
       opacity: calcValues({
         values: [1, 0, { start: 0, end: 0.3 }],
-        scrollHeight,
-        currentOffsetY,
+        ...scrollHeightAntCurrentOffsetY,
       }),
       y: calcValues({
         values: [20, 0, { start: 0, end: 0.3 }],
-        scrollHeight,
-        currentOffsetY,
+        ...scrollHeightAntCurrentOffsetY,
       }),
     })
 
-    setImageOpacity(
-      calcValues({
+    setImageTransition((prev) => ({
+      ...prev,
+      opacity: calcValues({
         values: [1, 0, { start: 0.5, end: 0.8 }],
-        scrollHeight,
-        currentOffsetY,
-      })
-    )
+        ...scrollHeightAntCurrentOffsetY,
+      }),
+    }))
 
     // Landing Box Effect
     setLandingBoxScale({
@@ -69,8 +66,7 @@ function Landing() {
           1 * ((ENVELOP_WRAPPER_SIZE - 10) / window.innerWidth),
           { start: 0.8, end: 1 },
         ],
-        scrollHeight,
-        currentOffsetY,
+        ...scrollHeightAntCurrentOffsetY,
       }),
       y: calcValues({
         values: [
@@ -78,26 +74,25 @@ function Landing() {
           1 * ((ENVELOP_WRAPPER_SIZE - 10) / window.innerHeight),
           { start: 0.8, end: 1 },
         ],
-        scrollHeight,
-        currentOffsetY,
+        ...scrollHeightAntCurrentOffsetY,
       }),
     })
   }
 
   useEffect(() => {
-    if (!wrapper.current) return
+    if (!sectionRef.current) return
 
-    wrapper.current.addEventListener('customscroll', handleScroll)
+    sectionRef.current.addEventListener('customscroll', handleScroll)
 
     return () => {
-      wrapper.current?.removeEventListener('customscroll', handleScroll)
+      sectionRef.current?.removeEventListener('customscroll', handleScroll)
     }
   }, [])
 
   return (
     <section
       id={LANDING_SCENE_ID}
-      ref={wrapper}
+      ref={sectionRef}
       style={{ height: `${100 * sceneLong}vh` }}
     >
       {inScene && (
@@ -106,8 +101,7 @@ function Landing() {
           <LandingImage
             src="/images/landing.jpg"
             alt="landing-image"
-            scale={imageScale}
-            opacity={imageOpacity}
+            {...imageTransition}
           />
           <LandingIntroMessage {...introMessageTransition} />
         </>

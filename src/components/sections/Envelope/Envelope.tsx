@@ -8,7 +8,7 @@ import EnvelopeIcon from './EnvelopeIcon'
 import EnvelopeWrapper from './EnvelopeWrapper'
 
 function Envelope() {
-  const wrapper = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
   const iconRef = useRef<HTMLDivElement>(null)
 
@@ -27,7 +27,7 @@ function Envelope() {
   })
 
   const handleScroll = ({ detail }: any) => {
-    const { scrollRatio, currentOffsetY, scrollHeight } = detail
+    const { scrollRatio, ...scrollHeightAntCurrentOffsetY } = detail
 
     if (!iconRef.current || !box.current) return
 
@@ -39,8 +39,7 @@ function Envelope() {
       ...prev,
       scale: calcValues({
         values: [1, scaleRatio, { start: 0, end: 0.5 }],
-        currentOffsetY,
-        scrollHeight,
+        ...scrollHeightAntCurrentOffsetY,
       }),
     }))
 
@@ -55,8 +54,7 @@ function Envelope() {
         ...prev,
         y: calcValues({
           values: [0, start.current, { start: 0.5, end: 1 }],
-          currentOffsetY,
-          scrollHeight,
+          ...scrollHeightAntCurrentOffsetY,
         }),
       }
     })
@@ -65,26 +63,25 @@ function Envelope() {
         ...prev,
         opacity: calcValues({
           values: [1, 0, { start: 1, end: 1 }],
-          currentOffsetY,
-          scrollHeight,
+          ...scrollHeightAntCurrentOffsetY,
         }),
       }
     })
   }
 
   useEffect(() => {
-    if (!wrapper.current) return
+    if (!sectionRef.current) return
 
-    wrapper.current.addEventListener('customscroll', handleScroll)
+    sectionRef.current.addEventListener('customscroll', handleScroll)
 
     return () => {
-      wrapper.current?.removeEventListener('customscroll', handleScroll)
+      sectionRef.current?.removeEventListener('customscroll', handleScroll)
     }
   }, [])
   return (
     <section
       id={ENVELOPE_SCENE_ID}
-      ref={wrapper}
+      ref={sectionRef}
       style={{ height: `${100 * sceneLong}vh` }}
     >
       {inScene && (
