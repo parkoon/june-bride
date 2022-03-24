@@ -1,4 +1,3 @@
-import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
 import { LANDING_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
@@ -10,14 +9,12 @@ import LandingBox from './LandingBox'
 import LandingImage from './LandingImage'
 import LandingIntroMessage from './LandingIntroMessage'
 
-const Wrapper = styled.section`
-  height: 500vh;
-`
-
 function Landing() {
   const wrapper = useRef<HTMLElement>(null)
 
-  const { inScene } = useCurrentScene(LANDING_SCENE_ID)
+  const { inScene, sceneLong } = useCurrentScene(LANDING_SCENE_ID)
+
+  console.log(sceneLong)
 
   const [imageScale, setImageScale] = useState(1)
 
@@ -98,7 +95,11 @@ function Landing() {
   }, [])
 
   return (
-    <Wrapper id={LANDING_SCENE_ID} ref={wrapper}>
+    <section
+      id={LANDING_SCENE_ID}
+      ref={wrapper}
+      style={{ height: `${100 * sceneLong}vh` }}
+    >
       {inScene && (
         <>
           <LandingBox {...landingBoxScale} />
@@ -111,7 +112,7 @@ function Landing() {
           <LandingIntroMessage {...introMessageTransition} />
         </>
       )}
-    </Wrapper>
+    </section>
   )
 }
 

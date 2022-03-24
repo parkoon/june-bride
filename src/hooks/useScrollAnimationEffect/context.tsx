@@ -25,9 +25,11 @@ export const useCurrentScene = (id?: string) => {
   const { currentScene, setCurrentScene } = useContext(CurrentSceneContext)
 
   const inScene = SCENE[currentScene].id === id
+  const sceneLong = SCENE.find((scene) => scene.id === id)?.long || 0
 
   return {
     inScene,
+    sceneLong,
     currentScene,
     setCurrentScene,
   }

@@ -1,26 +1,18 @@
-import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
-import {
-  ENVELOPE_SCENE_ID,
-  SCENE,
-} from '@hooks/useScrollAnimationEffect/constants'
+import { ENVELOPE_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
 import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
 import EnvelopeIcon from './EnvelopeIcon'
 import EnvelopeWrapper from './EnvelopeWrapper'
 
-const Wrapper = styled.section`
-  height: 500vh;
-`
-
 function Envelope() {
   const wrapper = useRef<HTMLElement>(null)
 
   const iconRef = useRef<HTMLDivElement>(null)
 
-  const { inScene } = useCurrentScene(ENVELOPE_SCENE_ID)
+  const { inScene, sceneLong } = useCurrentScene(ENVELOPE_SCENE_ID)
 
   const box = useRef<HTMLDivElement>(null)
 
@@ -90,13 +82,17 @@ function Envelope() {
     }
   }, [])
   return (
-    <Wrapper id={ENVELOPE_SCENE_ID} ref={wrapper}>
+    <section
+      id={ENVELOPE_SCENE_ID}
+      ref={wrapper}
+      style={{ height: `${100 * sceneLong}vh` }}
+    >
       {inScene && (
         <EnvelopeWrapper {...iconTransition} ref={box}>
           <EnvelopeIcon ref={iconRef} open={openEnvelope} />
         </EnvelopeWrapper>
       )}
-    </Wrapper>
+    </section>
   )
 }
 
