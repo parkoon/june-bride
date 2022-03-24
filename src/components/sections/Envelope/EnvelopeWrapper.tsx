@@ -26,6 +26,8 @@ const Wrapper = styled.div`
   justify-content: center;
 
   opacity: 0;
+
+  will-change: transform;
 `
 
 type Props = {
