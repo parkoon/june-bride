@@ -16,20 +16,21 @@ function Landing() {
     scale: 1,
     opacity: 1,
   })
-
   const [introMessageTransition, setIntroMessageTransition] = useState({
     opacity: 0,
     y: 20,
   })
-
-  const [landingBoxScale, setLandingBoxScale] = useState({ x: 1, y: 1 })
+  const [landingBoxTransition, setLandingBoxTransition] = useState({
+    x: 1,
+    y: 1,
+  })
 
   const sectionRef = useRef<HTMLElement>(null)
 
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, ...scrollHeightAntCurrentOffsetY } = detail
 
-    // Landing Image Event
+    // image scale animation
     setImageTransition((prev) => ({
       ...prev,
       scale: calcValues({
@@ -38,18 +39,7 @@ function Landing() {
       }),
     }))
 
-    // Intro Message Effect
-    setIntroMessageTransition({
-      opacity: calcValues({
-        values: [1, 0, { start: 0, end: 0.3 }],
-        ...scrollHeightAntCurrentOffsetY,
-      }),
-      y: calcValues({
-        values: [20, 0, { start: 0, end: 0.3 }],
-        ...scrollHeightAntCurrentOffsetY,
-      }),
-    })
-
+    // image opacity animation
     setImageTransition((prev) => ({
       ...prev,
       opacity: calcValues({
@@ -58,8 +48,20 @@ function Landing() {
       }),
     }))
 
-    // Landing Box Effect
-    setLandingBoxScale({
+    // intro message animation
+    setIntroMessageTransition({
+      opacity: calcValues({
+        values: [1, 0, { start: 0, end: 0.25 }],
+        ...scrollHeightAntCurrentOffsetY,
+      }),
+      y: calcValues({
+        values: [20, 0, { start: 0, end: 0.25 }],
+        ...scrollHeightAntCurrentOffsetY,
+      }),
+    })
+
+    // landing box animation
+    setLandingBoxTransition({
       x: calcValues({
         values: [
           1,
@@ -97,7 +99,7 @@ function Landing() {
     >
       {inScene && (
         <>
-          <LandingBox {...landingBoxScale} />
+          <LandingBox {...landingBoxTransition} />
           <LandingImage
             src="/images/landing.jpg"
             alt="landing-image"
