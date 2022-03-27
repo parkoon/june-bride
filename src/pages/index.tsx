@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { useEffect } from 'react'
 
 import EmptyBox from '@components/common/FakeBox'
 import Layout from '@components/common/Layout'
@@ -12,6 +13,12 @@ import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
 
 const Home: NextPage = () => {
   useScrollAnimationEffect()
+
+  const resetScroll = () => window.scrollTo(0, 0)
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', resetScroll)
+  }, [])
   return (
     <Layout>
       {/* <Guidance /> */}

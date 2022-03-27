@@ -11,7 +11,7 @@ export const SCENE = [
   },
   {
     id: ENVELOPE_SCENE_ID,
-    long: 5,
+    long: 3,
     animation: true,
   },
   {

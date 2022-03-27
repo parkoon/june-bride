@@ -33,7 +33,7 @@ function Envelope() {
 
     const scaleRatio = (window.innerWidth * 0.9) / iconRef.current.clientWidth
 
-    setOpenEnvelope(scrollRatio > 0.6)
+    setOpenEnvelope(scrollRatio > 0.3)
 
     setIconTransition((prev) => ({
       ...prev,
