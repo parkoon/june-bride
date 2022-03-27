@@ -6,6 +6,7 @@
   "importOrder": [
     "^@components/(.*)$",
     "^@hooks/(.*)$",
+    "^@icons/(.*)$",
     "^@styles/(.*)$",
     "^[./]"
   ],
