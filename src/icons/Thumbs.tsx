@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { CSSProperties, useState } from 'react'
 
-const Wrapper = styled.div<{ down?: boolean }>`
+const Wrapper = styled.button<{ down?: boolean }>`
   display: inline-block;
 
   ${({ down }) =>

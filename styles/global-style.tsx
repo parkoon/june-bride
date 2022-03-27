@@ -21,6 +21,13 @@ const defaultStyle = css`
     color: rgb(29, 29, 31);
     text-decoration: none;
   }
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+  }
 `
 
 function GlobalStyle() {

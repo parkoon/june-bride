@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
+import BottomSheet from '@components/common/BottomSheet'
 import HorizontalScroll from '@components/common/HorizontalScroll'
 import ThumbsUp from '@components/common/Lotties/ThumbsUp'
 import { LottieProps } from '@components/common/Lotties/types'
@@ -49,6 +50,8 @@ function GuidancePhotoGallery() {
   const lottieRef = useRef<LottieProps>(null)
 
   const [thumbs, setThumbs] = useState<ThumbsState>('none')
+
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
 
   const handleThumbsUp = () => {
     setThumbs('up')
@@ -106,10 +109,16 @@ function GuidancePhotoGallery() {
           style={{ marginRight: 'auto' }}
           onClick={handleThumbsDown}
         />
-        <Message count={24} />
+        <Message count={24} onClick={() => setIsBottomSheetVisible(true)} />
       </Footer>
 
       <ThumbsUp ref={lottieRef} />
+
+      {isBottomSheetVisible && (
+        <BottomSheet onClose={() => setIsBottomSheetVisible(false)}>
+          <input type="text" placeholder="test" />
+        </BottomSheet>
+      )}
     </GuidanceArticle>
   )
 }

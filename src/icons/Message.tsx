@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import React from 'react'
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
   display: flex;
   align-items: center;
 `
@@ -15,10 +15,11 @@ const Count = styled.span`
 
 type Props = {
   count?: number
+  onClick?(): void
 }
-function Message({ count }: Props) {
+function Message({ count, onClick }: Props) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Count>{count}</Count>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
         <path
