@@ -45,9 +45,12 @@ const Body = styled.div`
   background: #fff;
   border-radius: 24px;
 
-  font-size: 2rem;
-  font-weight: bold;
-  line-height: 1.25;
+  .body-title,
+  .body-description {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.25;
+  }
 `
 
 const BodyContent = styled.div`
@@ -131,7 +134,7 @@ function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
         <Body>
           <FadeInOut options={{ rootMargin: FADE_IN_OUT_ROOT_MARGIN }}>
             <span className="body-title">{body.title}</span>
-            <p>{body.description}</p>
+            <p className="body-description">{body.description}</p>
           </FadeInOut>
 
           <BodyContent>{children}</BodyContent>
