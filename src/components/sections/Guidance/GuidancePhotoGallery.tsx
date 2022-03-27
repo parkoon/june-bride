@@ -1,15 +1,20 @@
 import styled from '@emotion/styled'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import HorizontalScroll from '@components/common/HorizontalScroll'
+import ThumbsUp from '@components/common/Lotties/ThumbsUp'
+import { LottieProps } from '@components/common/Lotties/types'
+
+import Message from '@icons/Message'
+import Thumbs from '@icons/Thumbs'
 
 import GuidanceArticle from './GuidanceArticle'
 
 const ImageWrapper = styled.div`
   position: relative;
 
-  width: 200px;
+  width: 232px;
 
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
@@ -24,10 +29,42 @@ const ImageWrapper = styled.div`
 
 const Content = styled.div`
   height: 35vh;
+
+  margin-right: -20px;
+`
+
+const Footer = styled.div`
+  display: flex;
+  align-items: center;
+
+  height: 50px;
+
+  padding-top: 12px;
+  margin-bottom: -20px;
 `
 
 const PHOTOS = new Array(11).fill(1)
+type ThumbsState = 'up' | 'down' | 'none'
 function GuidancePhotoGallery() {
+  const lottieRef = useRef<LottieProps>(null)
+
+  const [thumbs, setThumbs] = useState<ThumbsState>('none')
+
+  const handleThumbsUp = () => {
+    setThumbs('up')
+    lottieRef.current?.play()
+    localStorage.setItem('thumbs', 'up')
+  }
+
+  const handleThumbsDown = () => {
+    setThumbs('down')
+    localStorage.setItem('thumbs', 'down')
+  }
+
+  useEffect(() => {
+    setThumbs(localStorage.getItem('thumbs') as ThumbsState)
+  }, [])
+
   return (
     <GuidanceArticle
       color="#0fb9b1"
@@ -46,6 +83,7 @@ function GuidancePhotoGallery() {
           {PHOTOS.map((key, index) => (
             <ImageWrapper key={key}>
               <Image
+                onClick={() => alert('ok')}
                 src={`/images/gallery/${index + 1}.jpg`}
                 layout="fill"
                 alt="photo"
@@ -55,6 +93,23 @@ function GuidancePhotoGallery() {
           ))}
         </HorizontalScroll>
       </Content>
+      <Footer>
+        <Thumbs
+          active={thumbs === 'up'}
+          count={24}
+          style={{ marginRight: 12 }}
+          onClick={handleThumbsUp}
+        />
+        <Thumbs
+          down
+          active={thumbs === 'down'}
+          style={{ marginRight: 'auto' }}
+          onClick={handleThumbsDown}
+        />
+        <Message count={24} />
+      </Footer>
+
+      <ThumbsUp ref={lottieRef} />
     </GuidanceArticle>
   )
 }

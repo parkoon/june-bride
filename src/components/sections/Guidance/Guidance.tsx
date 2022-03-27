@@ -12,8 +12,8 @@ function Guidance() {
     <GuidanceColorProvider defaultColor="#fff">
       <GuidanceColorWrapper>
         <GuidanceIntro />
-        {/* <GuidancePhotoGallery /> */}
-
+        <GuidancePhotoGallery />
+        {/* 
         {DUMMY.map((color, index) => (
           <GuidanceArticle
             key={color}
@@ -33,7 +33,7 @@ function Guidance() {
             modi consectetur possimus mollitia dignissimos blanditiis earum
             porro laudantium nemo commodi ipsam maiores?
           </GuidanceArticle>
-        ))}
+        ))} */}
       </GuidanceColorWrapper>
     </GuidanceColorProvider>
   )

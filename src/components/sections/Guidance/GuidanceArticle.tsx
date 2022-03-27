@@ -18,7 +18,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
 
-  min-height: 27vh;
+  padding: 40px 20px;
 
   margin-bottom: 15px;
   padding-left: 20px;
@@ -40,7 +40,7 @@ const Body = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  padding: 40px 0 40px 20px;
+  padding: 40px 20px;
 
   background: #fff;
   border-radius: 24px;
@@ -72,7 +72,7 @@ const Wrapper = styled.article<{ color?: string }>`
   }
 
   ${Body} {
-    span {
+    span.body-title {
       color: ${({ color }) => color};
     }
   }
@@ -130,7 +130,7 @@ function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
 
         <Body>
           <FadeInOut options={{ rootMargin: FADE_IN_OUT_ROOT_MARGIN }}>
-            <span>{body.title}</span>
+            <span className="body-title">{body.title}</span>
             <p>{body.description}</p>
           </FadeInOut>
 
