@@ -72,9 +72,12 @@ const Title = styled.span`
   font-weight: bold;
 `
 
-function ScrollDown() {
+type Props = {
+  opacity?: number
+}
+function ScrollDown({ opacity }: Props) {
   return (
-    <Wrapper>
+    <Wrapper style={{ opacity }}>
       <Line>
         <Arrow />
         <Title>Scroll down</Title>

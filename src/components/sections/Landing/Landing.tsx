@@ -36,8 +36,6 @@ function Landing() {
     },
   })
 
-  const [messageWrapperOpacity, setMessageWrapperOpacity] = useState(1)
-
   const [landingBoxTransition, setLandingBoxTransition] = useState({
     x: 1,
     y: 1,
@@ -101,13 +99,6 @@ function Landing() {
       },
     })
 
-    setMessageWrapperOpacity(
-      calcValues({
-        values: [1, 0, { start: 0.6, end: 0.8 }],
-        ...scrollHeightAntCurrentOffsetY,
-      })
-    )
-
     setLandingBoxTransition({
       x: calcValues({
         values: [
@@ -153,7 +144,7 @@ function Landing() {
             {...imageScaleAndOpacity}
           />
           <LandingIntroMessage opacity={introMessageOpacity} />
-          <LandingMessage opacity={messageWrapperOpacity}>
+          <LandingMessage opacity={imageScaleAndOpacity.opacity}>
             <p
               style={{
                 opacity: messageOpacityAndY.messageA.opacity,
@@ -182,7 +173,7 @@ function Landing() {
               <br /> 하객 여러분들께도. 미리 감사의 인사를 전합니다.
             </p>
           </LandingMessage>
-          <ScrollDown />
+          <ScrollDown opacity={imageScaleAndOpacity.opacity} />
         </>
       )}
     </section>
