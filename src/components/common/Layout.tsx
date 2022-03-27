@@ -12,7 +12,7 @@ type Props = {
 function Layout({ children }: Props) {
   return (
     <Wrapper>
-      <AppBar />
+      {/* <AppBar /> */}
       {children}
     </Wrapper>
   )

@@ -16,12 +16,9 @@ const up = keyframes`
   }
 `
 const Wrapper = styled.div`
-  height: 90vh;
+  height: 100vh;
 
   background: #fff;
-
-  border-top-right-radius: 24px;
-  border-top-left-radius: 24px;
 
   z-index: 999;
   position: fixed;
