@@ -52,7 +52,7 @@ function GuidancePhotoGallery() {
 
   const [thumbs, setThumbs] = useState<ThumbsState>('none')
 
-  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(true)
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
 
   const handleThumbsUp = () => {
     setThumbs('up')
