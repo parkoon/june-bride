@@ -6,7 +6,7 @@ export type Scene = typeof LANDING_SCENE_ID | typeof ENVELOPE_SCENE_ID
 export const SCENE = [
   {
     id: LANDING_SCENE_ID,
-    long: 5,
+    long: 4,
     animation: true,
   },
   {

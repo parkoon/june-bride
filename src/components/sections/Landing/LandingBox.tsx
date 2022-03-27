@@ -9,8 +9,6 @@ const Wrapper = styled.div`
   left: 0;
 
   background: #111;
-
-  border-radius: 24px;
 `
 
 type Props = {

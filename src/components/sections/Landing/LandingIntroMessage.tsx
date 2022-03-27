@@ -4,41 +4,45 @@ const Wrapper = styled.div`
   position: fixed;
   top: 20vh;
 
-  height: 30vh;
+  width: 100%;
 
   padding: 0 20px;
 
-  opacity: 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   h3 {
-    font-size: 2rem;
+    color: #fff;
+    font-size: 2.5rem;
     font-weight: bold;
 
-    color: #fff;
     text-align: center;
     word-break: keep-all;
 
     line-height: 1.4;
   }
+
+  animation: fadeIn 0.45s forwards ease-in;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate3d(0px, 20%, 0px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0px, 0%, 0px);
+    }
+  }
 `
 
 type Props = {
   opacity: number
-  y: number
 }
-function LandingIntroMessage({ opacity, y }: Props) {
+function LandingIntroMessage({ opacity }: Props) {
   return (
-    <Wrapper style={{ opacity, transform: `translate3d(0px, ${y}%, 0px)` }}>
-      <h3>
-        공무원의 신분과 정치적 중립성은
-        <br /> 법률이 정하는 바에 의하여 보장된다.
-        <br />
-        국회는 의장 1인과 부의장 2인을 선출한다.
-        <br />
+    <Wrapper>
+      <h3 style={{ opacity }}>
+        진심으로 사랑했던 <br />
+        누군가가 있었나요?
       </h3>
     </Wrapper>
   )
