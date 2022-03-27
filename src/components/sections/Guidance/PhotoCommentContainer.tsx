@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 
 import CommentProfileCard from '@components/common/CommentProfileCard'
 import Input from '@components/common/Input'
@@ -36,6 +36,38 @@ const Footer = styled.div`
 `
 
 function PhotoCommentContainer() {
+  const [username, setUsername] = useState('')
+  const [usernameError, setUsernameError] = useState(false)
+  const [comment, setComment] = useState('')
+  const [commentError, setCommentError] = useState(false)
+
+  const handleUserNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value)
+    setUsernameError(false)
+  }
+
+  const handleCommentChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value)
+    setCommentError(false)
+  }
+
+  const handleSend = () => {
+    console.log('comment', comment)
+
+    let valid = true
+    if (comment === '') {
+      setCommentError(true)
+      valid = false
+    }
+    if (username === '') {
+      setUsernameError(true)
+      valid = false
+    }
+
+    if (valid) {
+      alert(JSON.stringify({ username, comment }))
+    }
+  }
   return (
     <Wrapper>
       <Body>
@@ -52,9 +84,21 @@ function PhotoCommentContainer() {
       </Body>
 
       <Footer>
-        <Input placeholder="이름" style={{ width: 84 }} />
-        <Input placeholder="할말" style={{ marginRight: 8 }} />
-        <Send />
+        <Input
+          placeholder="이름에 뭐에요?"
+          style={{ width: 110 }}
+          value={username}
+          onChange={handleUserNameChange}
+          error={usernameError}
+        />
+        <Input
+          placeholder="신랑 신부에게 덕담 한마디!"
+          style={{ marginRight: 8 }}
+          value={comment}
+          onChange={handleCommentChange}
+          error={commentError}
+        />
+        <Send onClick={handleSend} />
       </Footer>
     </Wrapper>
   )

@@ -13,9 +13,13 @@ const Wrapper = styled.button`
   width: 30px;
   height: 30px;
 `
-function Send() {
+
+type Props = {
+  onClick?(): void
+}
+function Send({ onClick }: Props) {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <svg
         width="28"
         height="28"

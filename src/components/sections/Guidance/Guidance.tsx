@@ -1,3 +1,5 @@
+import { SnackbarProvider } from 'notistack'
+
 import GuidanceArticle from './GuidanceArticle'
 import GuidanceColorWrapper from './GuidanceColorWrapper'
 import GuidanceIntro from './GuidanceIntro'
@@ -13,6 +15,7 @@ function Guidance() {
       <GuidanceColorWrapper>
         <GuidanceIntro />
         <GuidancePhotoGallery />
+
         {/* 
         {DUMMY.map((color, index) => (
           <GuidanceArticle
