@@ -28,25 +28,13 @@ const Wrapper = styled.div`
 
   animation: ${up} 0.25s ease;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 72px 20px 0 20px;
 `
 
 const Button = styled.button`
   position: absolute;
   top: 20px;
   right: 20px;
-`
-
-const Overlay = styled.div`
-  background: rgba(0, 0, 0, 0.7);
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 `
 
 type Props = {
@@ -56,10 +44,9 @@ type Props = {
 function BottomSheet({ children, onClose }: Props) {
   const [blockScroll, allowScroll] = useScrollBlock()
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const overlayRef = useRef<HTMLDivElement>(null)
 
   const handleClose = () => {
-    if (!wrapperRef.current || !overlayRef.current) return
+    if (!wrapperRef.current) return
 
     const animation = wrapperRef.current.animate(
       [
@@ -68,18 +55,6 @@ function BottomSheet({ children, onClose }: Props) {
         },
         {
           transform: 'translateY(100%)',
-        },
-      ],
-      { duration: 0.1 * 1000 }
-    )
-
-    overlayRef.current.animate(
-      [
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
         },
       ],
       { duration: 0.1 * 1000 }
@@ -94,15 +69,12 @@ function BottomSheet({ children, onClose }: Props) {
   }, [allowScroll, blockScroll])
 
   return (
-    <>
-      <Overlay ref={overlayRef} onClick={handleClose} />
-      <Wrapper ref={wrapperRef}>
-        <Button onClick={handleClose}>
-          <CloseIcon />
-        </Button>
-        {children}
-      </Wrapper>
-    </>
+    <Wrapper ref={wrapperRef}>
+      <Button onClick={handleClose}>
+        <CloseIcon />
+      </Button>
+      {children}
+    </Wrapper>
   )
 }
 

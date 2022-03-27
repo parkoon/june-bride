@@ -11,6 +11,7 @@ import Message from '@icons/Message'
 import Thumbs from '@icons/Thumbs'
 
 import GuidanceArticle from './GuidanceArticle'
+import PhotoCommentContainer from './PhotoCommentContainer'
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -51,7 +52,7 @@ function GuidancePhotoGallery() {
 
   const [thumbs, setThumbs] = useState<ThumbsState>('none')
 
-  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
+  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(true)
 
   const handleThumbsUp = () => {
     setThumbs('up')
@@ -116,7 +117,7 @@ function GuidancePhotoGallery() {
 
       {isBottomSheetVisible && (
         <BottomSheet onClose={() => setIsBottomSheetVisible(false)}>
-          <input type="text" placeholder="test" />
+          <PhotoCommentContainer />
         </BottomSheet>
       )}
     </GuidanceArticle>
