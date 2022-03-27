@@ -30,7 +30,7 @@ const ImageWrapper = styled.div`
 `
 
 const Content = styled.div`
-  height: 35vh;
+  height: 42vh;
 
   margin-right: -20px;
 `
