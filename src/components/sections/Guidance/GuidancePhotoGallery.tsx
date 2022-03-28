@@ -31,8 +31,8 @@ const ImageWrapper = styled.div`
 
 const Content = styled.div`
   height: 42vh;
-
-  margin-right: -20px;
+  width: 100%;
+  padding-left: 20px;
 `
 
 const Footer = styled.div`
@@ -40,9 +40,8 @@ const Footer = styled.div`
   align-items: center;
 
   height: 50px;
-
-  padding-top: 12px;
-  margin-bottom: -20px;
+  padding: 0 20px;
+  margin: 12px 0;
 `
 
 const PHOTOS = new Array(11).fill(1)
