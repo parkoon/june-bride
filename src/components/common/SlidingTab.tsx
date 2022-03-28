@@ -5,25 +5,19 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 const Wrapper = styled.div`
   position: relative;
 
-  display: flex;
+  display: inline-flex;
+
+  background: rgba(0, 0, 0, 0.2);
+
+  border-radius: 12px;
+
+  padding: 4px;
 `
 
 const Item = styled.button<{ selected?: boolean }>`
   position: relative;
-  padding: 12px;
-
-  margin-right: 12px;
-
-  border-radius: 100px;
-
   min-width: 75px;
-  min-height: 38px;
-
-  font-weight: bold;
-
-  border: 2px solid #111;
-
-  color: #111;
+  padding: 12px;
 
   ${({ selected }) =>
     selected &&
@@ -31,13 +25,6 @@ const Item = styled.button<{ selected?: boolean }>`
       transition-delay: 0.2s;
       color: #fff;
     `}
-
-  > span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 `
 
 const Cover = styled.div`
@@ -47,8 +34,7 @@ const Cover = styled.div`
   position: absolute;
 
   left: 0;
-  border-radius: 100px;
-  padding: 12px;
+  border-radius: 12px;
 
   background: #111;
 
@@ -65,17 +51,18 @@ type Props = {
 
 function SlidingTab({ items, initialIndex = 0, onChange }: Props) {
   const [selectedItemIndex, setSelectedItemIndex] = useState(initialIndex)
-  const [coverStyle, setCoverStyle] = useState({ left: 0, width: 0 })
+  const [coverStyle, setCoverStyle] = useState({ left: 0, width: 0, height: 0 })
 
   const itemRefs = useRef<HTMLButtonElement[]>([])
 
   const getCoverStyle = (index: number) => {
     const { offsetLeft: left } = itemRefs.current[index]
-    const { width } = itemRefs.current[index].getBoundingClientRect()
+    const { width, height } = itemRefs.current[index].getBoundingClientRect()
 
     return {
       left,
       width,
+      height,
     }
   }
 
@@ -103,7 +90,7 @@ function SlidingTab({ items, initialIndex = 0, onChange }: Props) {
           onClick={handleItemClick(index)}
           ref={(ref) => (itemRefs.current[index] = ref!)}
         >
-          <span>{item}</span>
+          {item}
         </Item>
       ))}
     </Wrapper>
