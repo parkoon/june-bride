@@ -40,21 +40,20 @@ const Body = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  padding: 40px 20px;
-
   background: #fff;
   border-radius: 24px;
 
-  .body-title,
-  .body-description {
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 1.25;
-  }
+  overflow: hidden;
+`
+
+const BodyHeader = styled.div`
+  padding: 40px 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.25;
 `
 
 const BodyContent = styled.div`
-  margin-top: 52px;
   flex: 1;
 `
 
@@ -74,8 +73,8 @@ const Wrapper = styled.article<{ color?: string }>`
     }
   }
 
-  ${Body} {
-    span.body-title {
+  ${BodyHeader} {
+    span {
       color: ${({ color }) => color};
     }
   }
@@ -87,7 +86,7 @@ type Props = {
     title: string
     description: string
   }
-  body: {
+  body?: {
     title: string
     description: string
   }
@@ -132,10 +131,14 @@ function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
         </Header>
 
         <Body>
-          <FadeInOut options={{ rootMargin: FADE_IN_OUT_ROOT_MARGIN }}>
-            <span className="body-title">{body.title}</span>
-            <p className="body-description">{body.description}</p>
-          </FadeInOut>
+          {body && (
+            <FadeInOut options={{ rootMargin: FADE_IN_OUT_ROOT_MARGIN }}>
+              <BodyHeader>
+                <span>{body.title}</span>
+                <p>{body.description}</p>
+              </BodyHeader>
+            </FadeInOut>
+          )}
 
           <BodyContent>{children}</BodyContent>
         </Body>
