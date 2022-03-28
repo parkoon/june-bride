@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.8.1",
     "dayjs": "^1.11.0",
     "emotion-reset": "^3.0.1",
+    "framer-motion": "^6.2.8",
     "lottie-web": "^5.9.1",
     "next": "12.1.0",
     "react": "17.0.2",
