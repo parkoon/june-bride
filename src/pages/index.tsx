@@ -21,11 +21,11 @@ const Home: NextPage = () => {
   }, [])
   return (
     <Layout>
-      <Guidance />
-      {/* <Landing />
+      {/* <Guidance /> */}
+      <Landing />
       <Envelope />
       <Guidance />
-      <FAQ /> */}
+      <FAQ />
       {/* <Guidance />
 
       <FAQ /> */}
