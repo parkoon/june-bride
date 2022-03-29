@@ -40,11 +40,7 @@ type Props = {
 }
 function ButtonWrapper({ icon, iconColor, onClick, children }: Props) {
   return (
-    <Wrapper
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      onClick={onClick}
-    >
+    <Wrapper whileTap={{ scale: 0.95 }} onClick={onClick}>
       <Left>
         <IconWrapper style={{ backgroundColor: iconColor }}>{icon}</IconWrapper>
 
