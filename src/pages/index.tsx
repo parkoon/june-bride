@@ -27,10 +27,11 @@ const Home: NextPage = () => {
         if (navigator.userAgent.match(/iPhone|iPad/i)) {
           location.href = 'ftp://도메인/bridge.html?_targeturl=' + location.href
         } else {
-          location.href =
+          location.replace(
             'intent://' +
-            location.href.replace(/https?:\/\//i, '') +
-            '#Intent;scheme=http;package=com.android.chrome;end'
+              location.href.replace(/https?:\/\//i, '') +
+              '#Intent;scheme=http;package=com.android.chrome;end'
+          )
         }
       }
     }
