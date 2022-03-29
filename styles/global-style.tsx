@@ -28,6 +28,15 @@ const defaultStyle = css`
     outline: none;
     padding: 0;
   }
+
+  /* 모바일 환경에서 생기는 하이라이트 제거 (https://stackoverflow.com/questions/45049873/how-to-remove-the-blue-highlight-of-button-on-mobile) */
+  input,
+  textarea,
+  button,
+  select,
+  a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 `
 
 function GlobalStyle() {
