@@ -13,30 +13,32 @@ function Guidance() {
     <GuidanceColorProvider defaultColor="#fff">
       <GuidanceColorWrapper>
         <GuidanceIntro />
-        <GuidancePhotoGallery />
-        <GuidanceProfile />
 
-        {/* 
-        {DUMMY.map((color, index) => (
-          <GuidanceArticle
-            key={color}
-            color={color}
-            gap={(DUMMY.length - index) * GAP}
-            header={{
-              title: 'lorem',
-              description: 'Lorem ipsum dolor \n ipsum sit.',
-            }}
-            body={{
-              title: 'lorem',
-              description: 'Lorem ipsum dolor \n ipsum sit.',
-            }}
-          >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-            nostrum repudiandae, velit nam incidunt numquam dicta aspernatur
-            modi consectetur possimus mollitia dignissimos blanditiis earum
-            porro laudantium nemo commodi ipsam maiores?
-          </GuidanceArticle>
-        ))} */}
+        {DUMMY.map((color, index) => {
+          if (index === 0) return <GuidancePhotoGallery />
+          if (index === 1) return <GuidanceProfile />
+
+          return (
+            <GuidanceArticle
+              key={color}
+              color={color}
+              gap={(DUMMY.length - index) * GAP}
+              header={{
+                title: 'lorem',
+                description: 'Lorem ipsum dolor \n ipsum sit.',
+              }}
+              body={{
+                title: 'lorem',
+                description: 'Lorem ipsum dolor \n ipsum sit.',
+              }}
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+              nostrum repudiandae, velit nam incidunt numquam dicta aspernatur
+              modi consectetur possimus mollitia dignissimos blanditiis earum
+              porro laudantium nemo commodi ipsam maiores?
+            </GuidanceArticle>
+          )
+        })}
       </GuidanceColorWrapper>
     </GuidanceColorProvider>
   )

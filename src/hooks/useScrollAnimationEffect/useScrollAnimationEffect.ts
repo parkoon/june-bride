@@ -25,17 +25,13 @@ function useScrollAnimationEffect() {
       window.scrollY >=
       prevScrollHeight.current + window.innerHeight * SCENE[currentScene].long
     ) {
-      // SCENE 의 크기보다 커지지 않도록
-      if (currentScene >= SCENE.length - 1) {
-        return
-      }
-      setCurrentScene((prev) => prev + 1)
+      setCurrentScene((prev) => Math.min(SCENE.length - 1, prev + 1))
     }
 
     if (window.scrollY < prevScrollHeight.current) {
+      console.log('!!', currentScene)
       // 브라우저 바운스 효과로 인해 마이너스가 되는 것을 방지(모바일)
-      if (currentScene === 0) return
-      setCurrentScene((prev) => prev - 1)
+      setCurrentScene((prev) => Math.max(0, prev - 1))
     }
   }, [currentScene, setCurrentScene])
 

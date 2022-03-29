@@ -24,7 +24,7 @@ function CurrentSceneContextProvider({ children }: Props) {
 export const useCurrentScene = (id?: string) => {
   const { currentScene, setCurrentScene } = useContext(CurrentSceneContext)
 
-  const inScene = SCENE[currentScene].id === id
+  const inScene = SCENE[currentScene]?.id === id
   const sceneLong = SCENE.find((scene) => scene.id === id)?.long || 0
 
   return {

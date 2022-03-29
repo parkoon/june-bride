@@ -48,8 +48,8 @@ const ActionTitle = styled.span`
 function GuidanceProfile() {
   return (
     <GuidanceArticle
-      color="#f39c12"
-      gap={25}
+      color="#20bf6b"
+      gap={25 * 3}
       header={{
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',

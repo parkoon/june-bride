@@ -19,4 +19,9 @@ export const SCENE = [
     long: 0,
     animation: false,
   },
+  {
+    id: '',
+    long: 0,
+    animation: false,
+  },
 ]
