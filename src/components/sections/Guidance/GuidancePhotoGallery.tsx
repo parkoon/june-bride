@@ -71,7 +71,7 @@ function GuidancePhotoGallery() {
   return (
     <GuidanceArticle
       color="#0fb9b1"
-      gap={0}
+      gap={50}
       header={{
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',
