@@ -25,7 +25,7 @@ function LottieContainer({ src, style, size = 64, animationConfig }: Props) {
     }
 
     return () => lottie.destroy()
-  }, [src])
+  }, [src, animationConfig])
 
   return (
     <div
