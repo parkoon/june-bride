@@ -1,6 +1,9 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+
+import Bride from '@icons/Bride'
+import Groom from '@icons/Groom'
 
 const Wrapper = styled.div`
   position: relative;
@@ -17,13 +20,22 @@ const Wrapper = styled.div`
 const Item = styled.button<{ selected?: boolean }>`
   position: relative;
   min-width: 75px;
-  padding: 12px;
+  padding: 4px 12px;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
 
   ${({ selected }) =>
     selected &&
     css`
       transition-delay: 0.2s;
       color: #fff;
+
+      svg {
+        fill: #fff;
+      }
     `}
 `
 
@@ -44,13 +56,11 @@ const Cover = styled.div`
 `
 
 type Props = {
-  items: string[]
-  initialIndex?: number
   onChange?(index: number): void
 }
 
-function SlidingTab({ items, initialIndex = 0, onChange }: Props) {
-  const [selectedItemIndex, setSelectedItemIndex] = useState(initialIndex)
+function BridgeGroomTab({ onChange }: Props) {
+  const [selectedItem, setSelectedItem] = useState(0)
   const [coverStyle, setCoverStyle] = useState({ left: 0, width: 0, height: 0 })
 
   const itemRefs = useRef<HTMLButtonElement[]>([])
@@ -67,34 +77,34 @@ function SlidingTab({ items, initialIndex = 0, onChange }: Props) {
   }
 
   const handleItemClick = (index: number) => () => {
-    setSelectedItemIndex(index)
+    setSelectedItem(index)
     setCoverStyle(getCoverStyle(index))
     onChange?.(index)
   }
 
-  const initTabItem = useCallback(() => {
-    setCoverStyle(getCoverStyle(initialIndex))
-  }, [initialIndex])
-
   useEffect(() => {
-    initTabItem()
-  }, [initTabItem])
+    setCoverStyle(getCoverStyle(0))
+  }, [])
 
   return (
     <Wrapper>
       <Cover style={coverStyle} />
-      {items.map((item, index) => (
-        <Item
-          key={index}
-          selected={selectedItemIndex === index}
-          onClick={handleItemClick(index)}
-          ref={(ref) => (itemRefs.current[index] = ref!)}
-        >
-          {item}
-        </Item>
-      ))}
+      <Item
+        selected={selectedItem === 0}
+        onClick={handleItemClick(0)}
+        ref={(ref) => (itemRefs.current[0] = ref!)}
+      >
+        <Groom />
+      </Item>
+      <Item
+        selected={selectedItem === 1}
+        onClick={handleItemClick(1)}
+        ref={(ref) => (itemRefs.current[1] = ref!)}
+      >
+        <Bride />
+      </Item>
     </Wrapper>
   )
 }
 
-export default SlidingTab
+export default BridgeGroomTab

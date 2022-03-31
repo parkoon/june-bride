@@ -5,7 +5,7 @@ import React from 'react'
 import AccountCopyButton from '@components/Button/AccountCopyButton'
 import CallButton from '@components/Button/CallButton'
 import MessageButton from '@components/Button/MessageButton'
-import SlidingTab from '@components/common/SlidingTab'
+import BridgeGroomTab from '@components/common/BridgeGroomTab'
 
 import GuidanceArticle from './GuidanceArticle'
 
@@ -65,7 +65,7 @@ function GuidanceProfile() {
         />
 
         <TabWrapper>
-          <SlidingTab items={['신랑', '신부']} />
+          <BridgeGroomTab />
         </TabWrapper>
       </ImageWrapper>
 
