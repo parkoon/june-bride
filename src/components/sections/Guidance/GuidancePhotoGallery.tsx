@@ -58,6 +58,7 @@ function GuidancePhotoGallery(props: Props) {
   const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
 
   const handleThumbsUp = () => {
+    if (thumbs === 'up') return
     setThumbs('up')
     lottieRef.current?.play()
     localStorage.setItem('thumbs', 'up')
