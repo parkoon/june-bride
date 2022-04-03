@@ -28,7 +28,7 @@ const Wrapper = styled.div<{ noPadding: boolean }>`
 
   animation: ${up} 0.25s ease;
 
-  padding: 72px 20px 0 20px;
+  padding: 52px 20px 0 20px;
 
   ${({ noPadding }) =>
     noPadding &&
@@ -40,8 +40,8 @@ const Wrapper = styled.div<{ noPadding: boolean }>`
 
 const Button = styled.button`
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
 `
 
 type Props = {
