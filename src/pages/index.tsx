@@ -38,10 +38,10 @@ const Home: NextPage = () => {
   }, [])
   return (
     <Layout>
-      {/* <Landing />
-      <Envelope /> */}
+      <Landing />
+      <Envelope />
       <Guidance />
-      {/* <FAQ /> */}
+      <FAQ />
     </Layout>
   )
 }
