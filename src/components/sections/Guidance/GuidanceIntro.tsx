@@ -25,13 +25,15 @@ function GuidanceIntro() {
   return (
     <Wrapper>
       <h2 ref={colorTrigger}>
-        Lorem, <br />
-        ipsum.
+        우리, <br />
+        결혼합니다.
       </h2>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut mollitia
-        animi beatae minus aspernatur, illum debitis et ratione nobis neque
-        accusamus illo deserunt amet vitae earum incidunt quia. Odit, officia!
+        초록빛 싱그그러운 여름 <br />
+        새로이 시작하는 작은 사랑이 <br />
+        보다 크고 깊은 사람이 되려고 합니다. <br />
+        함께 자리하시어 <br />
+        축복해 주시면 가사하겠습니다. <br />
       </p>
     </Wrapper>
   )

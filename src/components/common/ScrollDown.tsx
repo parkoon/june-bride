@@ -23,7 +23,7 @@ const Line = styled.div`
     margin-left: -1px;
     width: 2px;
     height: 50px;
-    background: #fff;
+    background: #333;
     content: ' ';
   }
 
@@ -59,15 +59,15 @@ const Arrow = styled.span`
     padding: 0;
     width: 8px;
     height: 8px;
-    border-top: 2px solid #fff;
-    border-right: 2px solid #fff;
+    border-top: 2px solid #333;
+    border-right: 2px solid #333;
     transform: rotate(135deg);
   }
 `
 const Title = styled.span`
   display: block;
   text-transform: uppercase;
-  color: #fff;
+  color: #333;
   font-size: 14px;
   font-weight: bold;
 `

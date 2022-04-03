@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
+import ScrollDown from '@components/common/ScrollDown'
+
 import { ENVELOPE_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
 import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
@@ -39,7 +41,7 @@ function Envelope() {
     setIconTransition((prev) => ({
       ...prev,
       scale: calcValues({
-        values: [1, scaleRatio, { start: 0, end: 0.7 }],
+        values: [1, scaleRatio, { start: 0, end: 0.65 }],
         ...scrollHeightAntCurrentOffsetY,
       }),
     }))
@@ -54,7 +56,7 @@ function Envelope() {
       return {
         ...prev,
         y: calcValues({
-          values: [0, start.current, { start: 0.7, end: 1 }],
+          values: [0, start.current, { start: 0.65, end: 1 }],
           ...scrollHeightAntCurrentOffsetY,
         }),
       }
@@ -86,9 +88,12 @@ function Envelope() {
       style={{ height: `${100 * sceneLong}vh` }}
     >
       {inScene && (
-        <EnvelopeWrapper {...iconTransition} ref={box}>
-          <EnvelopeIcon ref={iconRef} open={openEnvelope} />
-        </EnvelopeWrapper>
+        <>
+          <EnvelopeWrapper {...iconTransition} ref={box}>
+            <EnvelopeIcon ref={iconRef} open={openEnvelope} />
+          </EnvelopeWrapper>
+          <ScrollDown opacity={openEnvelope ? 0 : 1} />
+        </>
       )}
     </section>
   )
