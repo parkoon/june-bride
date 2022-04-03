@@ -36,6 +36,7 @@ const Header = styled.header`
   }
 `
 const Body = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
