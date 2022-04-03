@@ -5,24 +5,51 @@ import Slick, { Settings } from 'react-slick'
 
 const PHOTOS = new Array(11).fill(1)
 
-const Container = styled.div`
+const ImageIndex = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  text-align: center;
+  margin-bottom: 7px;
+
+  transform: translateX(-50%);
+`
+const ImageWrapper = styled.div`
   position: relative;
 `
 
 const settings: Settings = {
-  dots: true,
+  dots: false,
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: false,
 }
 function PhotoDetail() {
+  const [currentIndex, setCurrentIndex] = useState(1)
+  const handleSwipe = (dir: string) => {
+    switch (dir) {
+      case 'left': {
+        setCurrentIndex((prev) => (prev === PHOTOS.length ? 1 : prev + 1))
+        return
+      }
+      case 'right': {
+        setCurrentIndex((prev) => (prev === 1 ? PHOTOS.length : prev - 1))
+        return null
+      }
+    }
+  }
   return (
-    <Slick {...settings}>
-      {PHOTOS.map((key, index) => (
-        <SlickItem key={key} src={`/images/gallery/${index + 1}.jpg`} />
-      ))}
-    </Slick>
+    <>
+      <ImageIndex>
+        {currentIndex} / {PHOTOS.length}
+      </ImageIndex>
+      <Slick {...settings} onSwipe={handleSwipe}>
+        {PHOTOS.map((key, index) => (
+          <SlickItem key={key} src={`/images/gallery/${index + 1}.jpg`} />
+        ))}
+      </Slick>
+    </>
   )
 }
 type Props = {
@@ -31,7 +58,7 @@ type Props = {
 function SlickItem({ src }: Props) {
   const [paddingTop, setPaddingTop] = useState('0')
   return (
-    <Container style={{ paddingTop }} key={src}>
+    <ImageWrapper style={{ paddingTop }} key={src}>
       <Image
         src={src}
         layout="fill"
@@ -43,7 +70,7 @@ function SlickItem({ src }: Props) {
           setPaddingTop(`calc(100% / (${naturalWidth} / ${naturalHeight})`)
         }}
       />
-    </Container>
+    </ImageWrapper>
   )
 }
 
