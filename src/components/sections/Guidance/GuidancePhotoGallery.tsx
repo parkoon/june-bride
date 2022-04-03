@@ -34,8 +34,6 @@ const IndexBadge = styled.div`
   right: 7px;
   top: 7px;
 
-  background: red;
-
   min-width: 50px;
   text-align: center;
 
