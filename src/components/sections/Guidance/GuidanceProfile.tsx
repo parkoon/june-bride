@@ -7,6 +7,8 @@ import CallButton from '@components/Button/CallButton'
 import MessageButton from '@components/Button/MessageButton'
 import BridgeGroomTab from '@components/common/BridgeGroomTab'
 
+import { color } from '@styles/theme'
+
 import GuidanceArticle from './GuidanceArticle'
 
 const TabWrapper = styled.div`
@@ -25,7 +27,7 @@ const Actions = styled.div`
   margin-top: 24px;
 `
 const ActionTitle = styled.span`
-  color: #7f8c8d;
+  color: ${color.gray};
   font-size: 0.9rem;
   padding: 12px;
 `
