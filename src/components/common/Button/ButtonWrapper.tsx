@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react'
 
 import Right from '@icons/Right'
 
-import { color } from '@styles/theme'
+import { color, figure } from '@styles/theme'
 
 const Wrapper = styled(motion.button)`
   width: 100%;
@@ -17,8 +17,8 @@ const Wrapper = styled(motion.button)`
 `
 
 const IconWrapper = styled.div`
-  padding: 10px;
-  border-radius: 50%;
+  padding: 8px;
+  border-radius: ${figure.borderRadius}px;
 `
 
 const Left = styled.div`
