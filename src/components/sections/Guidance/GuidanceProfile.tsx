@@ -63,8 +63,8 @@ function GuidanceProfile(props: Props) {
   return (
     <GuidanceArticle
       header={{
-        title: 'lorem',
-        description: 'Lorem ipsum dolor \n ipsum sit.',
+        title: '연락',
+        description: '멀리서 마음을 \n 표현하는 방법.',
       }}
       {...props}
     >
