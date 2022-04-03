@@ -92,7 +92,7 @@ type Props = {
   gap?: number
 }
 
-const COLOR_ROOT_MARGIN = '0% 0% -20% 0%'
+const COLOR_ROOT_MARGIN = '0% 0% -40% 0%'
 
 function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
   const [bottom, setBottom] = useState<number>(0)
