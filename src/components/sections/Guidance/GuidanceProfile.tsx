@@ -2,10 +2,10 @@ import styled from '@emotion/styled'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
-import AccountCopyButton from '@components/Button/AccountCopyButton'
-import CallButton from '@components/Button/CallButton'
-import MessageButton from '@components/Button/MessageButton'
 import BridgeGroomTab from '@components/common/BridgeGroomTab'
+import AccountCopyButton from '@components/common/Button/AccountCopyButton'
+import CallButton from '@components/common/Button/CallButton'
+import MessageButton from '@components/common/Button/MessageButton'
 
 import { color } from '@styles/theme'
 
