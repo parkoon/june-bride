@@ -29,6 +29,25 @@ const ImageWrapper = styled.div`
   }
 `
 
+const IndexBadge = styled.div`
+  position: absolute;
+  right: 7px;
+  top: 7px;
+
+  background: red;
+
+  min-width: 50px;
+  text-align: center;
+
+  border-radius: 100px;
+  padding: 7px 0;
+  color: #fff;
+
+  background: rgba(0, 0, 0, 0.8);
+
+  letter-spacing: 2px;
+`
+
 const Content = styled.div`
   height: 50vh;
   width: 100%;
@@ -97,6 +116,9 @@ function GuidancePhotoGallery(props: Props) {
                 objectFit="cover"
                 priority
               />
+              <IndexBadge>
+                {index + 1}/{PHOTOS.length}
+              </IndexBadge>
             </ImageWrapper>
           ))}
         </HorizontalScroll>
