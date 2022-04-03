@@ -1,20 +1,13 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
+import { figure } from '@styles/theme'
+
 import Pulse from '../Pulse'
 import { days, weeks } from './constants'
 
 const Wrapper = styled.section`
-  padding: 30px 0 40px 0; ;
-`
-
-const Header = styled.div`
-  h3 {
-    text-align: center;
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 32px;
-  }
+  padding-bottom: 32px;
 `
 
 const Content = styled.div`
@@ -22,7 +15,7 @@ const Content = styled.div`
 
   margin: 0 auto;
 
-  border-radius: 12px;
+  border-radius: ${figure.borderRadius}
 
   background-color: #fff;
 `
@@ -74,9 +67,6 @@ type Props = {
 function Calendar({ color }: Props) {
   return (
     <Wrapper>
-      <Header>
-        <h3>6월</h3>
-      </Header>
       <Content>
         <Weeks>
           {weeks.map((week) => (

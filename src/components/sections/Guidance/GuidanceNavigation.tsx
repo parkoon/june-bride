@@ -96,7 +96,7 @@ function GuidanceNavigation(props: Props) {
       body={{
         title: '강동루벨.',
         description:
-          '서울특별시 강동구 천호대로 1077 \n 이스트센트럴타워 35~36층.',
+          '서울특별시 강동구 \n 천호대로 1077 \n 이스트센트럴타워 35층.',
       }}
       {...props}
     >

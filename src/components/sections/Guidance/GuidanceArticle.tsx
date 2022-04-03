@@ -43,6 +43,10 @@ const Body = styled.div`
   border-radius: ${figure.borderRadius}px;
 
   overflow: hidden;
+
+  p {
+    white-space: pre-line;
+  }
 `
 
 const BodyHeader = styled.div`
