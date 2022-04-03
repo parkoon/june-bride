@@ -1,12 +1,9 @@
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
-import FadeInOut from '@components/common/FadeInOut'
-
 import { useChangeColorInView } from './hooks'
 
 const Container = styled.div`
-  /* max-width: 329px; */
   width: 90%;
   margin: 0 auto;
 `
@@ -95,7 +92,6 @@ type Props = {
   gap?: number
 }
 
-const FADE_IN_OUT_ROOT_MARGIN = '0% 0% -10% 0%'
 const COLOR_ROOT_MARGIN = '0% 0% -20% 0%'
 
 function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
@@ -122,23 +118,19 @@ function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
     >
       <Container>
         <Header ref={colorTrigger}>
-          <FadeInOut options={{ rootMargin: FADE_IN_OUT_ROOT_MARGIN }}>
-            <h3>
-              <span>{header.title}</span>
-              <br />
-              <p>{header.description}</p>
-            </h3>
-          </FadeInOut>
+          <h3>
+            <span>{header.title}</span>
+            <br />
+            <p>{header.description}</p>
+          </h3>
         </Header>
 
         <Body>
           {body && (
-            <FadeInOut options={{ rootMargin: FADE_IN_OUT_ROOT_MARGIN }}>
-              <BodyHeader>
-                <span>{body.title}</span>
-                <p>{body.description}</p>
-              </BodyHeader>
-            </FadeInOut>
+            <BodyHeader>
+              <span>{body.title}</span>
+              <p>{body.description}</p>
+            </BodyHeader>
           )}
 
           <BodyContent>{children}</BodyContent>

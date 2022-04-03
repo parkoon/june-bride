@@ -46,7 +46,11 @@ const Footer = styled.div`
 
 const PHOTOS = new Array(11).fill(1)
 type ThumbsState = 'up' | 'down' | 'none'
-function GuidancePhotoGallery() {
+type Props = {
+  gap: number
+  color: string
+}
+function GuidancePhotoGallery(props: Props) {
   const lottieRef = useRef<LottieProps>(null)
 
   const [thumbs, setThumbs] = useState<ThumbsState>('none')
@@ -70,8 +74,6 @@ function GuidancePhotoGallery() {
 
   return (
     <GuidanceArticle
-      color="#eb3b5a"
-      gap={25 * 4}
       header={{
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',
@@ -80,6 +82,7 @@ function GuidancePhotoGallery() {
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',
       }}
+      {...props}
     >
       <Content>
         <HorizontalScroll>

@@ -45,15 +45,18 @@ const ActionTitle = styled.span`
   font-size: 0.9rem;
   padding: 12px;
 `
-function GuidanceProfile() {
+type Props = {
+  gap: number
+  color: string
+}
+function GuidanceProfile(props: Props) {
   return (
     <GuidanceArticle
-      color="#20bf6b"
-      gap={25 * 3}
       header={{
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',
       }}
+      {...props}
     >
       <ImageWrapper>
         <Image

@@ -63,12 +63,13 @@ const Content = styled.div`
   height: 300px;
   width: 100%;
 `
-
-function GuidanceNavigation() {
+type Props = {
+  gap: number
+  color: string
+}
+function GuidanceNavigation(props: Props) {
   return (
     <GuidanceArticle
-      color="#8854d0"
-      gap={25 * 2}
       header={{
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',
@@ -77,6 +78,7 @@ function GuidanceNavigation() {
         title: 'lorem',
         description: 'Lorem ipsum dolor \n ipsum sit.',
       }}
+      {...props}
     >
       <Content>
         <CityBackground />

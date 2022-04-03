@@ -7,7 +7,8 @@ import GuidancePhotoGallery from './GuidancePhotoGallery'
 import GuidanceProfile from './GuidanceProfile'
 import { GuidanceColorProvider } from './context'
 
-const GUIDANCE_COLORS = ['#eb3b5a', '#20bf6b', '#8854d0', '#3867d6']
+export const COLORS = ['#eb3b5a', '#20bf6b', '#8854d0', '#3867d6']
+const COLOR_LENGTH = COLORS.length
 const GAP = 25
 
 function Guidance() {
@@ -16,35 +17,33 @@ function Guidance() {
       <GuidanceColorWrapper>
         <GuidanceIntro />
 
-        <GuidancePhotoGallery />
-        <GuidanceProfile />
-        <GuidanceNavigation />
-        <GuidanceDate />
-
-        {/* {DUMMY.map((color, index) => {
-
-
-          return (
-            <GuidanceArticle
-              key={color}
-              color={color}
-              gap={(DUMMY.length - index) * GAP}
-              header={{
-                title: 'lorem',
-                description: 'Lorem ipsum dolor \n ipsum sit.',
-              }}
-              body={{
-                title: 'lorem',
-                description: 'Lorem ipsum dolor \n ipsum sit.',
-              }}
-            >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-              nostrum repudiandae, velit nam incidunt numquam dicta aspernatur
-              modi consectetur possimus mollitia dignissimos blanditiis earum
-              porro laudantium nemo commodi ipsam maiores?
-            </GuidanceArticle>
-          )
-        })} */}
+        {COLORS.map((color, index) => {
+          if (index === 0)
+            return (
+              <GuidancePhotoGallery
+                gap={(COLOR_LENGTH - index) * GAP}
+                color={color}
+              />
+            )
+          if (index === 1)
+            return (
+              <GuidanceProfile
+                gap={(COLOR_LENGTH - index) * GAP}
+                color={color}
+              />
+            )
+          if (index === 2)
+            return (
+              <GuidanceNavigation
+                gap={(COLOR_LENGTH - index) * GAP}
+                color={color}
+              />
+            )
+          if (index === 3)
+            return (
+              <GuidanceDate gap={(COLOR_LENGTH - index) * GAP} color={color} />
+            )
+        })}
       </GuidanceColorWrapper>
     </GuidanceColorProvider>
   )
