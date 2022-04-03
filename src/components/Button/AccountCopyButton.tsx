@@ -4,11 +4,15 @@ import Card from '@icons/Card'
 
 import ButtonWrapper from './ButtonWrapper'
 
-function AccountCopyButton() {
+type Props = { description?: string }
+function AccountCopyButton({ description }: Props) {
   return (
-    <ButtonWrapper icon={<Card />} iconColor="#f1c40f">
-      계좌번호 복사하기
-    </ButtonWrapper>
+    <ButtonWrapper
+      icon={<Card />}
+      iconColor="#f1c40f"
+      title="계좌번호 복사하기"
+      description={description}
+    />
   )
 }
 

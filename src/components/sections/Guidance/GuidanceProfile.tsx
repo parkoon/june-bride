@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 
 import AccountCopyButton from '@components/Button/AccountCopyButton'
 import CallButton from '@components/Button/CallButton'
@@ -12,34 +12,18 @@ import GuidanceArticle from './GuidanceArticle'
 const TabWrapper = styled.div`
   position: absolute;
 
-  left: 12px;
-  top: 12px;
+  top: 7px;
+  right: 7px;
 `
-
 const ImageWrapper = styled.div`
   position: relative;
 
   width: 100%;
   height: 50vh;
 `
-const UserInfo = styled.div`
-  padding: 20px 12px;
-`
-const UserName = styled.h3`
-  font-size: 1.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-`
-const Job = styled.span`
-  color: #7f8c8d;
-  font-size: 1.1rem;
-`
-const Status = styled.span``
-
 const Actions = styled.div`
   margin-top: 24px;
 `
-
 const ActionTitle = styled.span`
   color: #7f8c8d;
   font-size: 0.9rem;
@@ -49,7 +33,31 @@ type Props = {
   gap: number
   color: string
 }
+
+const profile = {
+  groom: {
+    title: '신랑',
+    phone: '010-3328-0917',
+    bank: '신한은행 110-265-285-679',
+    image: '/images/gallery/1.jpg',
+  },
+  bride: {
+    title: '신부',
+    phone: '010-4321-9302',
+    bank: '우리은행 1002-2458-658687',
+    image: '/images/gallery/2.jpg',
+  },
+}
+
 function GuidanceProfile(props: Props) {
+  const [currentProfile, setCurrentProfile] =
+    useState<keyof typeof profile>('groom')
+
+  const handleTabChange = (value: number) => {
+    setCurrentProfile(value === 0 ? 'groom' : 'bride')
+  }
+
+  const { bank, image, phone, title } = profile[currentProfile]
   return (
     <GuidanceArticle
       header={{
@@ -59,28 +67,18 @@ function GuidanceProfile(props: Props) {
       {...props}
     >
       <ImageWrapper>
-        <Image
-          onClick={() => alert('ok')}
-          src={`/images/gallery/1.jpg`}
-          layout="fill"
-          alt="photo"
-          objectFit="cover"
-        />
+        <Image src={image} layout="fill" alt="photo" objectFit="cover" />
 
         <TabWrapper>
-          <BridgeGroomTab />
+          <BridgeGroomTab onChange={handleTabChange} />
         </TabWrapper>
       </ImageWrapper>
 
-      {/* <UserInfo>
-        <UserName>박 종혁</UserName>
-        <Job>Frontend Engineer</Job>
-      </UserInfo> */}
       <Actions>
-        <ActionTitle>신랑에게 연락하기</ActionTitle>
-        <MessageButton />
-        <CallButton />
-        <AccountCopyButton />
+        <ActionTitle>{title}에게 연락하기</ActionTitle>
+        <MessageButton description={phone} />
+        <CallButton description={phone} />
+        <AccountCopyButton description={bank} />
       </Actions>
     </GuidanceArticle>
   )

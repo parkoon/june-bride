@@ -5,6 +5,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import Bride from '@icons/Bride'
 import Groom from '@icons/Groom'
 
+import { figure } from '@styles/theme'
+
 const Wrapper = styled.div`
   position: relative;
 
@@ -14,7 +16,7 @@ const Wrapper = styled.div`
 
   border-radius: 12px;
 
-  padding: 4px;
+  padding: 2px;
 `
 
 const Item = styled.button<{ selected?: boolean }>`
@@ -23,8 +25,8 @@ const Item = styled.button<{ selected?: boolean }>`
   padding: 4px 12px;
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
 
   ${({ selected }) =>
@@ -46,9 +48,9 @@ const Cover = styled.div`
   position: absolute;
 
   left: 0;
-  border-radius: 12px;
+  border-radius: ${figure.borderRadius}px;
 
-  background: #111;
+  background: #222;
 
   height: 100%;
 
@@ -56,14 +58,18 @@ const Cover = styled.div`
 `
 
 type Props = {
+  initialTab?: number
   onChange?(index: number): void
+  color?: string
 }
 
-function BridgeGroomTab({ onChange }: Props) {
-  const [selectedItem, setSelectedItem] = useState(0)
+function BridgeGroomTab({ initialTab = 0, color, onChange }: Props) {
+  const [selectedItem, setSelectedItem] = useState(initialTab)
   const [coverStyle, setCoverStyle] = useState({ left: 0, width: 0, height: 0 })
 
   const itemRefs = useRef<HTMLButtonElement[]>([])
+
+  const isGroomSelected = selectedItem === 0
 
   const getCoverStyle = (index: number) => {
     const { offsetLeft: left } = itemRefs.current[index]
@@ -88,16 +94,16 @@ function BridgeGroomTab({ onChange }: Props) {
 
   return (
     <Wrapper>
-      <Cover style={coverStyle} />
+      <Cover style={{ ...coverStyle, background: color }} />
       <Item
-        selected={selectedItem === 0}
+        selected={isGroomSelected}
         onClick={handleItemClick(0)}
         ref={(ref) => (itemRefs.current[0] = ref!)}
       >
         <Groom />
       </Item>
       <Item
-        selected={selectedItem === 1}
+        selected={!isGroomSelected}
         onClick={handleItemClick(1)}
         ref={(ref) => (itemRefs.current[1] = ref!)}
       >

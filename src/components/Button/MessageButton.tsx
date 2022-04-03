@@ -1,15 +1,19 @@
 import React from 'react'
 
-import Card from '@icons/Card'
 import Chat from '@icons/Chat'
 
 import ButtonWrapper from './ButtonWrapper'
 
-function MessageButton() {
+type Props = { description?: string }
+function MessageButton({ description }: Props) {
   return (
-    <ButtonWrapper icon={<Chat />} iconColor="#bdc3c7">
-      문자보내기
-    </ButtonWrapper>
+    <ButtonWrapper
+      icon={<Chat />}
+      iconColor="#bdc3c7"
+      title="문자보내기"
+      description={description}
+      onClick={() => (window.location.href = `sms:${description}`)}
+    />
   )
 }
 

@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
+import { figure } from '@styles/theme'
+
 import { useChangeColorInView } from './hooks'
 
 const Container = styled.div`
@@ -9,8 +11,7 @@ const Container = styled.div`
 `
 
 const Header = styled.header`
-  /* TODO. border radius 가 이상함... */
-  border-radius: 48px;
+  border-radius: ${figure.borderRadius}px;
 
   display: flex;
   align-items: center;
@@ -39,7 +40,7 @@ const Body = styled.div`
   justify-content: space-between;
 
   background: #fff;
-  border-radius: 24px;
+  border-radius: ${figure.borderRadius}px;
 
   overflow: hidden;
 `

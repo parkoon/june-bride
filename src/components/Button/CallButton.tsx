@@ -4,11 +4,15 @@ import Call from '@icons/Call'
 
 import ButtonWrapper from './ButtonWrapper'
 
-function CallButton() {
+type Props = { description?: string }
+function CallButton({ description }: Props) {
   return (
-    <ButtonWrapper icon={<Call />} iconColor="#27ae60">
-      전화하기
-    </ButtonWrapper>
+    <ButtonWrapper
+      icon={<Call />}
+      iconColor="#27ae60"
+      title="전화하기"
+      description={description}
+    />
   )
 }
 

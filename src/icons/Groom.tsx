@@ -2,13 +2,7 @@ import React from 'react'
 
 function Groom() {
   return (
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      x="0px"
-      y="0px"
-      viewBox="0 0 442.99 442.99"
-    >
+    <svg viewBox="0 0 442.99 442.99">
       <g>
         <path
           d="M289.817,349.052c-4.168-1.609-8.783-1.251-12.654,0.984l-38.723,22.354c-3.819-3.582-8.938-5.794-14.576-5.794h-4.767
