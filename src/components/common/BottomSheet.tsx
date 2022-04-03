@@ -5,6 +5,7 @@ import { ReactNode, useEffect, useRef } from 'react'
 import CloseIcon from '@icons/Close'
 
 import { useScrollBlock } from '../../hooks/useScrollBlock'
+import Portal from './Portal'
 
 const up = keyframes`
   from {
@@ -20,7 +21,6 @@ const Wrapper = styled.div`
 
   background: #fff;
 
-  z-index: 999;
   position: fixed;
   left: 0;
   right: 0;
@@ -69,12 +69,14 @@ function BottomSheet({ children, onClose }: Props) {
   }, [allowScroll, blockScroll])
 
   return (
-    <Wrapper ref={wrapperRef}>
-      <Button onClick={handleClose}>
-        <CloseIcon />
-      </Button>
-      {children}
-    </Wrapper>
+    <Portal selector="#bottom-sheet">
+      <Wrapper ref={wrapperRef}>
+        <Button onClick={handleClose}>
+          <CloseIcon />
+        </Button>
+        {children}
+      </Wrapper>
+    </Portal>
   )
 }
 

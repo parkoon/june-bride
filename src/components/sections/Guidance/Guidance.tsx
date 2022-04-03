@@ -7,7 +7,7 @@ import GuidancePhotoGallery from './GuidancePhotoGallery'
 import GuidanceProfile from './GuidanceProfile'
 import { GuidanceColorProvider } from './context'
 
-export const COLORS = ['#eb3b5a', '#20bf6b', '#8854d0', '#3867d6']
+export const COLORS = ['#e74c3c', '#20bf6b', '#8854d0', '#3867d6']
 const COLOR_LENGTH = COLORS.length
 const GAP = 25
 
