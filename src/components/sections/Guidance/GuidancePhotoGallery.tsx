@@ -30,7 +30,7 @@ const ImageWrapper = styled.div`
 `
 
 const Content = styled.div`
-  height: 42vh;
+  height: 50vh;
   width: 100%;
   padding-left: 20px;
 `
@@ -95,6 +95,7 @@ function GuidancePhotoGallery(props: Props) {
                 layout="fill"
                 alt="photo"
                 objectFit="cover"
+                priority
               />
             </ImageWrapper>
           ))}
