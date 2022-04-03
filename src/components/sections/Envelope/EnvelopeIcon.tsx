@@ -2,6 +2,8 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { forwardRef } from 'react'
 
+import { letterPaperColors } from '@styles/theme'
+
 const WIDTH = 120
 const HEIGHT = 90
 
@@ -11,7 +13,7 @@ const Letter = styled.div<{ open: boolean; color: string; index: number }>`
   width: 90%;
   height: 100%;
   background-color: ${({ color }) => color};
-  border-radius: 12px;
+  border-radius: 4px;
   z-index: 2;
   transition: 0.5s;
 
@@ -26,7 +28,7 @@ const Letter = styled.div<{ open: boolean; color: string; index: number }>`
 const Wrapper = styled.div<{ open: boolean }>`
   height: ${HEIGHT}px;
   width: ${WIDTH}px;
-  background-color: #3760c9;
+  background-color: #393e46;
   position: relative;
   display: flex;
   justify-content: center;
@@ -47,7 +49,7 @@ const Wrapper = styled.div<{ open: boolean }>`
 
   /* Lid when closed */
   .lid.one {
-    border-top: ${HEIGHT / 2}px solid #658ced;
+    border-top: ${HEIGHT / 2}px solid #393e46;
     transform: rotateX(0deg);
     z-index: 3;
     transition-delay: 0.6s;
@@ -55,7 +57,7 @@ const Wrapper = styled.div<{ open: boolean }>`
 
   /* Lid when opened */
   .lid.two {
-    border-top: ${HEIGHT / 2}px solid #3760c9;
+    border-top: ${HEIGHT / 2}px solid #393e46;
     transform: rotateX(90deg);
     z-index: 1;
     transition-delay: 0.5s;
@@ -68,9 +70,9 @@ const Wrapper = styled.div<{ open: boolean }>`
     top: 0;
     left: 0;
     border-top: ${HEIGHT / 2}px solid transparent;
-    border-right: ${WIDTH / 2}px solid #c4dff0;
-    border-bottom: ${HEIGHT / 2}px solid #c4dff0;
-    border-left: ${WIDTH / 2}px solid #a4d4f2;
+    border-right: ${WIDTH / 2}px solid #00adb5;
+    border-bottom: ${HEIGHT / 2}px solid #00adb5;
+    border-left: ${WIDTH / 2}px solid #eeeeee;
     z-index: 3;
   }
 
@@ -92,7 +94,6 @@ const Wrapper = styled.div<{ open: boolean }>`
 type Props = {
   open: boolean
 }
-const COLORS = ['#eb3b5a', '#20bf6b', '#8854d0', '#F8EFBA']
 
 const EnvelopeIcon = forwardRef<HTMLDivElement, Props>(({ open }, ref) => {
   return (
@@ -101,14 +102,14 @@ const EnvelopeIcon = forwardRef<HTMLDivElement, Props>(({ open }, ref) => {
       <div className="lid two"></div>
       <div className="envelope"></div>
 
-      {COLORS.map((color, index) => (
+      {letterPaperColors.map((color, index) => (
         <Letter
           ref={ref}
           className="letter"
           key={color}
           open={open}
           color={color}
-          index={COLORS.length - index}
+          index={letterPaperColors.length - index}
         />
       ))}
     </Wrapper>

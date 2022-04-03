@@ -5,6 +5,7 @@ import Accordion from '@components/common/Accordion'
 import { ITEMS } from './constants'
 
 const Wrapper = styled.section`
+  background: #fff;
   padding: 72px 20px 40px 20px;
   h3 {
     font-size: 2rem;

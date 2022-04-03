@@ -62,10 +62,7 @@ const BodyContent = styled.div`
 
 const Wrapper = styled.article<{ color?: string }>`
   position: sticky;
-
-  &:not(:last-of-type) {
-    margin-bottom: 50px;
-  }
+  padding-bottom: 50px;
 
   ${Header} {
     background: ${({ color }) => color};

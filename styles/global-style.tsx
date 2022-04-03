@@ -16,6 +16,7 @@ const defaultStyle = css`
     overflow-x: hidden;
     color: rgb(29, 29, 31);
     letter-spacing: -0.05em;
+    background: #f5f1e7;
   }
   a {
     color: rgb(29, 29, 31);

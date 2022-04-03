@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
   color: #fff;
 
-  background: #111;
+  background: #222831;
 
   display: flex;
   align-items: center;

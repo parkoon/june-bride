@@ -5,10 +5,7 @@ import { useGuidanceColor } from './context'
 
 const Wrapper = styled.section<{ color: string }>`
   background: ${({ color }) => color};
-
   transition: background 0.2s linear;
-
-  padding: 40px 0;
 `
 
 type Props = {

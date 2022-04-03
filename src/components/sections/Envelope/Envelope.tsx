@@ -31,14 +31,15 @@ function Envelope() {
 
     if (!iconRef.current || !box.current) return
 
+    // 편지지의 크기가 전체 90% 차지하고 있기 때문에 0.9를 곱해줍니다.
     const scaleRatio = (window.innerWidth * 0.9) / iconRef.current.clientWidth
 
-    setOpenEnvelope(scrollRatio > 0.3)
+    setOpenEnvelope(scrollRatio > 0.2)
 
     setIconTransition((prev) => ({
       ...prev,
       scale: calcValues({
-        values: [1, scaleRatio, { start: 0, end: 0.5 }],
+        values: [1, scaleRatio, { start: 0, end: 0.7 }],
         ...scrollHeightAntCurrentOffsetY,
       }),
     }))
@@ -53,7 +54,7 @@ function Envelope() {
       return {
         ...prev,
         y: calcValues({
-          values: [0, start.current, { start: 0.5, end: 1 }],
+          values: [0, start.current, { start: 0.7, end: 1 }],
           ...scrollHeightAntCurrentOffsetY,
         }),
       }
