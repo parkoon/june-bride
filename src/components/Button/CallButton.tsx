@@ -12,6 +12,7 @@ function CallButton({ description }: Props) {
       iconColor="#27ae60"
       title="전화하기"
       description={description}
+      onClick={() => (window.location.href = `tel:${description}`)}
     />
   )
 }
