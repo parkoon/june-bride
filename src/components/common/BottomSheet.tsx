@@ -1,4 +1,4 @@
-import { keyframes } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { ReactNode, useEffect, useRef } from 'react'
 
@@ -16,7 +16,7 @@ const up = keyframes`
     transform: translateY(0);
   }
 `
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ noPadding: boolean }>`
   height: 100vh;
 
   background: #fff;
@@ -29,6 +29,13 @@ const Wrapper = styled.div`
   animation: ${up} 0.25s ease;
 
   padding: 72px 20px 0 20px;
+
+  ${({ noPadding }) =>
+    noPadding &&
+    css`
+      padding-left: 0;
+      padding-right: 0;
+    `}
 `
 
 const Button = styled.button`
@@ -39,9 +46,10 @@ const Button = styled.button`
 
 type Props = {
   children?: ReactNode
+  noPadding?: boolean
   onClose?: () => void
 }
-function BottomSheet({ children, onClose }: Props) {
+function BottomSheet({ noPadding = false, children, onClose }: Props) {
   const [blockScroll, allowScroll] = useScrollBlock()
   const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -70,7 +78,7 @@ function BottomSheet({ children, onClose }: Props) {
 
   return (
     <Portal selector="#bottom-sheet">
-      <Wrapper ref={wrapperRef}>
+      <Wrapper ref={wrapperRef} noPadding={noPadding}>
         <Button onClick={handleClose}>
           <CloseIcon />
         </Button>

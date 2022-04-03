@@ -12,6 +12,7 @@ import Thumbs from '@icons/Thumbs'
 
 import GuidanceArticle from './GuidanceArticle'
 import PhotoCommentContainer from './PhotoCommentContainer'
+import PhotoDetail from './PhotoDetail'
 
 const ImageWrapper = styled.div`
   position: relative;
@@ -31,10 +32,10 @@ const ImageWrapper = styled.div`
 
 const IndexBadge = styled.div`
   position: absolute;
-  right: 7px;
-  top: 7px;
+  right: 5px;
+  top: 5px;
 
-  min-width: 50px;
+  min-width: 40px;
   text-align: center;
 
   border-radius: 100px;
@@ -44,10 +45,10 @@ const IndexBadge = styled.div`
   background: rgba(0, 0, 0, 0.8);
 
   letter-spacing: 2px;
+  font-size: 0.8rem;
 `
 
 const Content = styled.div`
-  height: 50vh;
   width: 100%;
   padding-left: 20px;
 `
@@ -61,6 +62,20 @@ const Footer = styled.div`
   margin: 12px 0;
 `
 
+const Action = styled.div`
+  margin-bottom: 7px;
+  padding-right: 20px;
+
+  button {
+    color: #7f8c8d;
+    padding: 4px 7px;
+
+    margin-left: -7px;
+
+    text-decoration: underline;
+  }
+`
+
 const PHOTOS = new Array(11).fill(1)
 type ThumbsState = 'up' | 'down' | 'none'
 type Props = {
@@ -72,7 +87,9 @@ function GuidancePhotoGallery(props: Props) {
 
   const [thumbs, setThumbs] = useState<ThumbsState>('none')
 
-  const [isBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
+  const [isCommentBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
+  const [isPhotoBottomSheetVisible, setIsPhotoBottomSheetVisible] =
+    useState(false)
 
   const handleThumbsUp = () => {
     if (thumbs === 'up') return
@@ -103,7 +120,12 @@ function GuidancePhotoGallery(props: Props) {
       {...props}
     >
       <Content>
-        <HorizontalScroll>
+        <Action>
+          <button onClick={() => setIsPhotoBottomSheetVisible(true)}>
+            부담스러운 크기로 보기
+          </button>
+        </Action>
+        <HorizontalScroll style={{ height: '50vh' }}>
           {PHOTOS.map((key, index) => (
             <ImageWrapper key={key}>
               <Image
@@ -139,7 +161,16 @@ function GuidancePhotoGallery(props: Props) {
 
       <ThumbsUp ref={lottieRef} />
 
-      {isBottomSheetVisible && (
+      {isPhotoBottomSheetVisible && (
+        <BottomSheet
+          onClose={() => setIsPhotoBottomSheetVisible(false)}
+          noPadding
+        >
+          <PhotoDetail />
+        </BottomSheet>
+      )}
+
+      {isCommentBottomSheetVisible && (
         <BottomSheet onClose={() => setIsBottomSheetVisible(false)}>
           <PhotoCommentContainer />
         </BottomSheet>

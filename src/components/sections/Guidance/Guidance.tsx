@@ -1,4 +1,3 @@
-import GuidanceArticle from './GuidanceArticle'
 import GuidanceColorWrapper from './GuidanceColorWrapper'
 import GuidanceDate from './GuidanceDate'
 import GuidanceIntro from './GuidanceIntro'

@@ -37,6 +37,11 @@ const defaultStyle = css`
   a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
+
+  .slick-track {
+    display: flex;
+    align-items: center;
+  }
 `
 
 function GlobalStyle() {
