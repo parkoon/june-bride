@@ -1,10 +1,21 @@
 import styled from '@emotion/styled'
 import React, { ChangeEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import CommentProfileCard from '@components/common/CommentProfileCard'
 import Input from '@components/common/Input'
+import Textarea from '@components/common/Textarea'
+
+import {
+  Comment,
+  addComment,
+  deleteComment,
+  useComments,
+} from '@hooks/useComments'
 
 import Send from '@icons/Send'
+
+import PhotoCommentDeletePopup from './PhotoCommentDeletePopup'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -18,88 +29,148 @@ const Body = styled.div`
 
   height: 100%;
 
-  padding-bottom: 82px;
+  padding-bottom: 150px;
 `
 const Footer = styled.div`
   display: flex;
+
   align-items: center;
-  gap: 4px;
+  justify-content: center;
 
   position: fixed;
   bottom: 0;
   width: 100%;
   left: 0;
   padding: 0 20px;
-  height: 70px;
 
   background: #fff;
+
+  box-shadow: 0px -4px 20px rgba(110, 108, 108, 0.75);
+  height: 132px;
 `
 
+const Left = styled.div`
+  margin-right: 12px;
+`
+
+const UserInfo = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 7px;
+
+  margin-bottom: 7px;
+`
+type FormValue = Pick<Comment, 'username' | 'password' | 'comment'>
+const initialFormValue = {
+  username: '',
+  password: '',
+  comment: '',
+}
+
 function PhotoCommentContainer() {
-  const [username, setUsername] = useState('')
-  const [usernameError, setUsernameError] = useState(false)
-  const [comment, setComment] = useState('')
-  const [commentError, setCommentError] = useState(false)
+  const [formValue, setFormValue] = useState<FormValue>(initialFormValue)
+  const [formError, setFormError] = useState<Record<keyof FormValue, boolean>>({
+    username: false,
+    password: false,
+    comment: false,
+  })
 
-  const handleUserNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value)
-    setUsernameError(false)
+  const [currentComment, setCurrentComment] = useState<Comment | null>(null)
+
+  const comments = useComments()
+
+  const handleFormChange = (
+    e: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>
+  ) => {
+    setFormValue(
+      (prev) =>
+        ({ ...prev, [e.target.name]: e.target.value as string } as FormValue)
+    )
+
+    setFormError((prev) => ({ ...prev, [e.target.name]: false }))
   }
 
-  const handleCommentChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setComment(e.target.value)
-    setCommentError(false)
+  const handleDeleteComment = async () => {
+    if (!currentComment) return
+    await deleteComment(currentComment.id)
+    setCurrentComment(null)
+    toast('잘 지워졌어요. 다시 써주실꺼죠?', { type: 'success' })
   }
 
-  const handleSend = () => {
-    console.log('comment', comment)
+  const handleSend = async () => {
+    const { comment, password, username } = formValue
 
     let valid = true
     if (comment === '') {
-      setCommentError(true)
+      setFormError((prev) => ({ ...prev, comment: true }))
       valid = false
     }
     if (username === '') {
-      setUsernameError(true)
+      setFormError((prev) => ({ ...prev, username: true }))
+      valid = false
+    }
+    if (password === '') {
+      setFormError((prev) => ({ ...prev, password: true }))
       valid = false
     }
 
     if (valid) {
-      alert(JSON.stringify({ username, comment }))
+      try {
+        await addComment({ username, comment, password })
+        setFormValue(initialFormValue)
+        toast('덕담 감사합니다. 행복하게 잘 살게요!', { type: 'success' })
+      } catch (err) {}
     }
   }
+
   return (
     <Wrapper>
       <Body>
-        {new Array(20).fill(0).map((_, index) => (
+        {comments.map((comment) => (
           <CommentProfileCard
-            key={index}
-            username="박종혁"
-            commentAt={Date.now()}
-            comment={
-              '행복하게사세요\n행복하게사세요\n행복하게사세요\n행복하게사세요'
-            }
+            key={comment.id}
+            {...comment}
+            onDeleteClick={() => setCurrentComment(comment)}
           />
         ))}
       </Body>
 
       <Footer>
-        <Input
-          placeholder="이름에 뭐에요?"
-          style={{ width: 110 }}
-          value={username}
-          onChange={handleUserNameChange}
-          error={usernameError}
-        />
-        <Input
-          placeholder="신랑 신부에게 덕담 한마디!"
-          style={{ marginRight: 8 }}
-          value={comment}
-          onChange={handleCommentChange}
-          error={commentError}
-        />
+        <Left>
+          <UserInfo>
+            <Input
+              name="username"
+              placeholder="이름이?"
+              onChange={handleFormChange}
+              value={formValue.username}
+              error={formError.username}
+            />
+            <Input
+              name="password"
+              placeholder="비밀번호는?"
+              onChange={handleFormChange}
+              value={formValue.password}
+              error={formError.password}
+            />
+          </UserInfo>
+          <Textarea
+            name="comment"
+            placeholder="신랑 신부에게 덕담 한마디 해주세요."
+            onChange={handleFormChange}
+            value={formValue.comment}
+            error={formError.comment}
+            rows={3}
+          />
+        </Left>
         <Send onClick={handleSend} />
       </Footer>
+
+      <PhotoCommentDeletePopup
+        visible={Boolean(currentComment)}
+        registeredPassword={currentComment?.password}
+        onCancel={() => setCurrentComment(null)}
+        onOk={handleDeleteComment}
+      />
     </Wrapper>
   )
 }

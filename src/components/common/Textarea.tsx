@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 import { figure } from '@styles/theme'
 
-const Input = styled.input<{ error?: boolean }>`
+const Textarea = styled.textarea<{ error?: boolean }>`
   border: none;
   outline: none;
   resize: none;
@@ -24,4 +24,4 @@ const Input = styled.input<{ error?: boolean }>`
     `}
 `
 
-export default Input
+export default Textarea

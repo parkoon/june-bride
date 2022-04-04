@@ -2,14 +2,19 @@ import styled from '@emotion/styled'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { motion } from 'framer-motion'
 import React from 'react'
+
+import Delete from '@icons/Delete'
+
+import { figure } from '@styles/theme'
 
 dayjs.extend(relativeTime)
 dayjs.locale('ko')
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 35px 1fr;
+  grid-template-columns: 35px 1fr 35px;
 
   grid-gap: 12px;
 
@@ -18,7 +23,7 @@ const Wrapper = styled.div`
 
   background-color: #ebebeb;
 
-  border-radius: 24px;
+  border-radius: ${figure.borderRadius}px;
 `
 const Avatar = styled.div`
   display: flex;
@@ -28,7 +33,7 @@ const Avatar = styled.div`
   width: 35px;
   height: 35px;
 
-  border-radius: 50%;
+  border-radius: ${figure.borderRadius}px;
   background: orange;
 
   color: #fff;
@@ -57,12 +62,23 @@ const CommentAt = styled.span`
   font-weight: normal;
 `
 
+const DeleteButton = styled(motion.button)`
+  width: 35px;
+  height: 35px;
+`
+
 type Props = {
   username: string
   comment: string
-  commentAt: number
+  createdAt: number
+  onDeleteClick?(): void
 }
-function CommentProfileCard({ username, comment, commentAt }: Props) {
+function CommentProfileCard({
+  username,
+  comment,
+  createdAt,
+  onDeleteClick,
+}: Props) {
   return (
     <Wrapper>
       <Avatar>
@@ -71,10 +87,13 @@ function CommentProfileCard({ username, comment, commentAt }: Props) {
       <div>
         <Header>
           <UserName>{username}</UserName>
-          <CommentAt>{dayjs(commentAt).fromNow()}</CommentAt>
+          <CommentAt>{dayjs(createdAt).fromNow()}</CommentAt>
         </Header>
         <Comment>{comment}</Comment>
       </div>
+      <DeleteButton whileTap={{ scale: 0.9 }} onClick={onDeleteClick}>
+        <Delete />
+      </DeleteButton>
     </Wrapper>
   )
 }

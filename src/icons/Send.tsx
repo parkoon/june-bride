@@ -1,17 +1,20 @@
 import styled from '@emotion/styled'
 import React from 'react'
 
+import { figure } from '@styles/theme'
+
 const Wrapper = styled.button`
   background: #636e72;
-  border-radius: 50%;
+  border-radius: ${figure.borderRadius}px;
   padding: 4px;
+  padding-right: 7px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 `
 
 type Props = {
