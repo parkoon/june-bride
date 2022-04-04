@@ -18,7 +18,7 @@ type Props = {
   style?: CSSProperties
   onClick?(): void
 }
-function Thumbs({ active, onClick, down, count, style }: Props) {
+function Thumbs({ active, onClick, down, style }: Props) {
   return (
     <Wrapper down={down} style={style} onClick={onClick}>
       <svg viewBox="0 0 505.173 505.173" width={25}>
