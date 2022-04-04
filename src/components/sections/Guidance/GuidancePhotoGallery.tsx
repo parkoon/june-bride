@@ -7,6 +7,8 @@ import HorizontalScroll from '@components/common/HorizontalScroll'
 import ThumbsUp from '@components/common/Lotties/ThumbsUp'
 import { LottieProps } from '@components/common/Lotties/types'
 
+import { useComments } from '@hooks/useComments'
+
 import Message from '@icons/Message'
 import Thumbs from '@icons/Thumbs'
 
@@ -87,6 +89,8 @@ function GuidancePhotoGallery(props: Props) {
 
   const [thumbs, setThumbs] = useState<ThumbsState>('none')
 
+  const comments = useComments()
+
   const [isCommentBottomSheetVisible, setIsBottomSheetVisible] = useState(false)
   const [isPhotoBottomSheetVisible, setIsPhotoBottomSheetVisible] =
     useState(false)
@@ -146,8 +150,7 @@ function GuidancePhotoGallery(props: Props) {
       <Footer>
         <Thumbs
           active={thumbs === 'up'}
-          count={24}
-          style={{ marginRight: 12 }}
+          style={{ marginRight: 14 }}
           onClick={handleThumbsUp}
         />
         <Thumbs
@@ -156,7 +159,10 @@ function GuidancePhotoGallery(props: Props) {
           style={{ marginRight: 'auto' }}
           onClick={handleThumbsDown}
         />
-        <Message count={24} onClick={() => setIsBottomSheetVisible(true)} />
+        <Message
+          count={comments.length}
+          onClick={() => setIsBottomSheetVisible(true)}
+        />
       </Footer>
 
       <ThumbsUp ref={lottieRef} />

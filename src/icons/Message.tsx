@@ -1,16 +1,16 @@
 import styled from '@emotion/styled'
 import React from 'react'
 
+import { color } from '@styles/theme'
+
 const Wrapper = styled.button`
   display: flex;
   align-items: center;
 `
 const Count = styled.span`
-  color: #51565f;
-  font-weight: lighter;
-  font-size: 1.2rem;
-
-  margin-right: 12px;
+  color: ${color.gray};
+  font-size: 1.1rem;
+  margin-right: 7px;
 `
 
 type Props = {
