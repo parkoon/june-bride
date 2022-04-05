@@ -14,33 +14,19 @@ dayjs.locale('ko')
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 35px 1fr 35px;
+  grid-template-columns: 1fr 35px;
 
   grid-gap: 12px;
 
   padding: 20px 15px;
-  font-size: 1.2rem;
 
   background-color: #ebebeb;
 
   border-radius: ${figure.borderRadius}px;
 `
-const Avatar = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 35px;
-  height: 35px;
-
-  border-radius: ${figure.borderRadius}px;
-  background: orange;
-
-  color: #fff;
-`
 
 const Header = styled.div`
-  margin-bottom: 4px;
+  margin-bottom: 7px;
 
   display: flex;
   align-items: center;
@@ -53,6 +39,7 @@ const Comment = styled.p`
   font-weight: normal;
 
   white-space: pre-line;
+  line-height: 1.1rem;
 `
 
 const CommentAt = styled.span`
@@ -81,9 +68,6 @@ function CommentProfileCard({
 }: Props) {
   return (
     <Wrapper>
-      <Avatar>
-        <span>{username.charAt(0)}</span>
-      </Avatar>
       <div>
         <Header>
           <UserName>{username}</UserName>
