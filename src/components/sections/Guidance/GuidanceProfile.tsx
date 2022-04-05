@@ -21,7 +21,7 @@ const ImageWrapper = styled.div`
   position: relative;
 
   width: 100%;
-  height: 320pxvh;
+  height: 320px;
 `
 const Actions = styled.div`
   margin-top: 24px;

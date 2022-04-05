@@ -129,7 +129,7 @@ function GuidancePhotoGallery(props: Props) {
             부담스러운 크기로 보기
           </button>
         </Action>
-        <HorizontalScroll style={{ height: '50vh' }}>
+        <HorizontalScroll style={{ height: 380 }}>
           {PHOTOS.map((key, index) => (
             <ImageWrapper key={key}>
               <Image
