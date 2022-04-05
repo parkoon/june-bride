@@ -1,4 +1,5 @@
 import React from 'react'
+import mobileOnlyTrigger from 'src/helpers/mobileOnlyTrigger'
 
 import Chat from '@icons/Chat'
 
@@ -12,7 +13,9 @@ function MessageButton({ description }: Props) {
       iconColor="#bdc3c7"
       title="문자보내기"
       description={description}
-      onClick={() => (window.location.href = `sms:${description}`)}
+      onClick={() => {
+        mobileOnlyTrigger(() => (window.location.href = `sms:${description}`))
+      }}
     />
   )
 }

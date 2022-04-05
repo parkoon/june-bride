@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 import React from 'react'
 
 import { figure } from '@styles/theme'
 
-const Wrapper = styled.button`
+const Wrapper = styled(motion.button)`
   background: #636e72;
   border-radius: ${figure.borderRadius}px;
   padding: 4px;
@@ -22,7 +23,7 @@ type Props = {
 }
 function Send({ onClick }: Props) {
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={onClick} whileTap={{ scale: 0.9 }}>
       <svg
         width="28"
         height="28"

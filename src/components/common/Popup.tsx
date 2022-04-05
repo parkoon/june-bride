@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 import React from 'react'
 
 import { figure } from '@styles/theme'
@@ -40,7 +41,7 @@ const Header = styled.div`
 const Content = styled.div`
   position: relative;
   padding: 20px;
-  width: 80vw;
+  width: 80%;
   background: #fff;
   border-radius: ${figure.borderRadius}px;
 `
@@ -54,7 +55,7 @@ const Footer = styled.div`
   margin-top: 18px;
 `
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   width: 100%;
   padding: 12px;
   border-radius: ${figure.borderRadius}px;
@@ -88,8 +89,12 @@ function Popup({ title, visible, children, onCancel, onOk }: Props) {
           </Header>
           {children}
           <Footer>
-            <Cancel onClick={onCancel}>안할래요</Cancel>
-            <Ok onClick={onOk}>할래요</Ok>
+            <Cancel whileTap={{ scale: 0.9 }} onClick={onCancel}>
+              안할래요
+            </Cancel>
+            <Ok whileTap={{ scale: 0.9 }} onClick={onOk}>
+              할래요
+            </Ok>
           </Footer>
         </Content>
       </Wrapper>

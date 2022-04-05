@@ -1,4 +1,5 @@
 import React from 'react'
+import mobileOnlyTrigger from 'src/helpers/mobileOnlyTrigger'
 
 import Call from '@icons/Call'
 
@@ -12,7 +13,9 @@ function CallButton({ description }: Props) {
       iconColor="#27ae60"
       title="전화하기"
       description={description}
-      onClick={() => (window.location.href = `tel:${description}`)}
+      onClick={() => {
+        mobileOnlyTrigger(() => (window.location.href = `tel:${description}`))
+      }}
     />
   )
 }

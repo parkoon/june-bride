@@ -2,9 +2,12 @@ import styled from '@emotion/styled'
 import React from 'react'
 
 import Inline from '@components/common/Inline'
-import { MapCopyButton } from '@components/common/Map'
-import KakaoMapButton from '@components/common/Map/KakaoMapButton'
-import NaverMapButton from '@components/common/Map/NaverMapButton'
+import {
+  KakaoMapButton,
+  MapCopyButton,
+  NaverMapButton,
+} from '@components/common/Map'
+import { address } from '@components/common/Map/constants'
 
 import { color } from '@styles/theme'
 
@@ -95,8 +98,7 @@ function GuidanceNavigation(props: Props) {
       }}
       body={{
         title: '강동루벨.',
-        description:
-          '서울특별시 강동구 \n 천호대로 1077 \n 이스트센트럴타워 35층.',
+        description: address,
       }}
       {...props}
     >
