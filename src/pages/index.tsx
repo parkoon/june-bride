@@ -26,56 +26,6 @@ import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
 const Home: NextPage = () => {
   useScrollAnimationEffect()
 
-  // const [books, setBooks] = useState()
-
-  // const addItem = async () => {
-  //   const collectionRef = collection(db, 'books')
-  //   const docRef = await addDoc(collectionRef, {
-  //     username: 'foo',
-  //     password: 'bar',
-  //     content: 'fooo bar',
-  //     createdAt: serverTimestamp(),
-  //   })
-
-  //   alert(docRef.id)
-  // }
-
-  // const deleteItem = async () => {
-  //   const docRef = doc(db, 'books', 'z9jof9xlcDbbiRXVCpTz')
-
-  //   await deleteDoc(docRef)
-  // }
-
-  // useEffect(() => {
-  //   const collectionRef = collection(db, 'books')
-  //   const q = query(collectionRef, orderBy('createdAt', 'desc'))
-
-  //   const unsubscribe = onSnapshot(q, (snapshot) => {
-  //     const data = snapshot.docs.map((doc) => {
-  //       console.log('zz', doc.data())
-
-  //       const d = doc.data()
-  //       return {
-  //         ...doc.data(),
-  //         id: doc.id,
-  //         createdAt: doc.data().createdAt?.toDate().getTime(),
-  //       }
-  //     })
-  //     console.log('snapshot', data)
-
-  //     setBooks(data)
-  //     // setBooks(
-  //     //   snapshot.docs.map((doc) => ({
-  //     //     ...doc.data(),
-  //     //     id: doc.id,
-  //     //     timestamp: doc.data().timestamp?.toDate().getTime(),
-  //     //   }))
-  //     // )
-  //   })
-
-  //   return unsubscribe
-  // }, [])
-
   const resetScroll = () => window.scrollTo(0, 0)
 
   useEffect(() => {
@@ -83,12 +33,11 @@ const Home: NextPage = () => {
   }, [])
   return (
     <Layout>
-      {/* <Envelope />
-      <div style={{ height: '100vh' }} /> */}
+      <Envelope />
+      <div style={{ height: '100vh' }} />
       <Guidance />
-
+      <FAQ />
       <ToastContainer autoClose={1500} position="top-center" />
-      {/* <FAQ /> */}
     </Layout>
   )
 }

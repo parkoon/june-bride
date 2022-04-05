@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
+import { LAYOUT_MAX_WIDTH } from '@components/common/Layout'
 import ScrollDown from '@components/common/ScrollDown'
 
 import { ENVELOPE_SCENE_ID } from '@hooks/useScrollAnimationEffect/constants'
@@ -7,7 +8,6 @@ import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
 import EnvelopeIcon from './EnvelopeIcon'
-import EnvelopeWrapper from './EnvelopeWrapper'
 
 function Envelope() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -15,8 +15,6 @@ function Envelope() {
   const iconRef = useRef<HTMLDivElement>(null)
 
   const { inScene, sceneLong } = useCurrentScene(ENVELOPE_SCENE_ID)
-
-  const box = useRef<HTMLDivElement>(null)
 
   const start = useRef<number>(0)
 
@@ -31,10 +29,11 @@ function Envelope() {
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, ...scrollHeightAntCurrentOffsetY } = detail
 
-    if (!iconRef.current || !box.current) return
+    if (!iconRef.current) return
 
-    // 편지지의 크기가 전체 90% 차지하고 있기 때문에 0.9를 곱해줍니다.
-    const scaleRatio = (window.innerWidth * 0.9) / iconRef.current.clientWidth
+    const scaleRatio =
+      Math.min(LAYOUT_MAX_WIDTH, window.innerWidth) /
+      iconRef.current.clientWidth
 
     setOpenEnvelope(scrollRatio > 0.2)
 
@@ -48,8 +47,10 @@ function Envelope() {
 
     if (!start.current) {
       start.current =
-        box.current.offsetTop +
-        (box.current.clientHeight * scaleRatio - box.current.clientHeight) / 2
+        iconRef.current.offsetTop +
+        (iconRef.current.clientHeight * scaleRatio -
+          iconRef.current.clientHeight) /
+          2
     }
 
     setIconTransition((prev) => {
@@ -89,9 +90,7 @@ function Envelope() {
     >
       {inScene && (
         <>
-          <EnvelopeWrapper {...iconTransition} ref={box}>
-            <EnvelopeIcon ref={iconRef} open={openEnvelope} />
-          </EnvelopeWrapper>
+          <EnvelopeIcon {...iconTransition} ref={iconRef} open={openEnvelope} />
           <ScrollDown opacity={openEnvelope ? 0 : 1} />
         </>
       )}

@@ -34,6 +34,15 @@ const Wrapper = styled.div<{ open: boolean }>`
   justify-content: center;
   z-index: 0;
 
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  will-change: transform;
+
   .lid {
     position: absolute;
     height: 100%;
@@ -93,28 +102,40 @@ const Wrapper = styled.div<{ open: boolean }>`
 
 type Props = {
   open: boolean
+  opacity: number
+  scale: number
+  y: number
 }
 
-const EnvelopeIcon = forwardRef<HTMLDivElement, Props>(({ open }, ref) => {
-  return (
-    <Wrapper open={open}>
-      <div className="lid one"></div>
-      <div className="lid two"></div>
-      <div className="envelope"></div>
+const EnvelopeIcon = forwardRef<HTMLDivElement, Props>(
+  ({ open, opacity, scale, y }, ref) => {
+    return (
+      <Wrapper
+        ref={ref}
+        open={open}
+        style={{
+          opacity,
+          transform: `translate3d(-50%, calc(-50% + ${y}px), 0) scale(${scale})`,
+        }}
+      >
+        <div className="lid one"></div>
+        <div className="lid two"></div>
+        <div className="envelope"></div>
 
-      {letterPaperColors.map((color, index) => (
-        <Letter
-          ref={ref}
-          className="letter"
-          key={color}
-          open={open}
-          color={color}
-          index={letterPaperColors.length - index}
-        />
-      ))}
-    </Wrapper>
-  )
-})
+        {letterPaperColors.map((color, index) => (
+          <Letter
+            id="letter"
+            className="letter"
+            key={color}
+            open={open}
+            color={color}
+            index={letterPaperColors.length - index}
+          />
+        ))}
+      </Wrapper>
+    )
+  }
+)
 
 EnvelopeIcon.displayName = 'EnvelopeIcon'
 

@@ -108,6 +108,7 @@ function GuidancePhotoGallery(props: Props) {
   }
 
   useEffect(() => {
+    console.log('ok..')
     setThumbs(localStorage.getItem('thumbs') as ThumbsState)
   }, [])
 
