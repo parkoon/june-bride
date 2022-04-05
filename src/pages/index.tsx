@@ -1,27 +1,22 @@
-import {
-  Timestamp,
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-} from 'firebase/firestore'
+import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify'
+import { useEffect } from 'react'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { db } from 'src/firebase'
 
 import Layout from '@components/common/Layout'
 import Envelope from '@components/sections/Envelope'
 import FAQ from '@components/sections/FAQ'
 import Guidance from '@components/sections/Guidance'
-import Landing from '@components/sections/Landing'
+import OnlyPC from '@components/sections/OnlyPC'
 
 import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
+
+const Wrapper = styled.div`
+  display: flex;
+
+  justify-content: center;
+`
 
 const Home: NextPage = () => {
   useScrollAnimationEffect()
@@ -32,13 +27,16 @@ const Home: NextPage = () => {
     window.addEventListener('beforeunload', resetScroll)
   }, [])
   return (
-    <Layout>
-      <Envelope />
-      <div style={{ height: '100vh' }} />
-      <Guidance />
-      <FAQ />
-      <ToastContainer autoClose={1500} position="top-center" />
-    </Layout>
+    <Wrapper>
+      <OnlyPC />
+      <Layout>
+        <Envelope />
+        <div style={{ height: '100vh' }} />
+        <Guidance />
+        <FAQ />
+        <ToastContainer autoClose={1500} position="top-center" />
+      </Layout>
+    </Wrapper>
   )
 }
 

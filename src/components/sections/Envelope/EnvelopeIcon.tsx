@@ -2,7 +2,9 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import React, { forwardRef } from 'react'
 
-import { letterPaperColors } from '@styles/theme'
+import { breakpoint, letterPaperColors } from '@styles/theme'
+
+import { ONLY_PC_SECTION_WIDTH } from '../OnlyPC/OnlyPC'
 
 const WIDTH = 120
 const HEIGHT = 90
@@ -98,6 +100,10 @@ const Wrapper = styled.div<{ open: boolean }>`
         transition-delay: 0.1s;
       }
     `}
+
+  @media (min-width: ${breakpoint}px) {
+    margin-left: ${ONLY_PC_SECTION_WIDTH / 2}px;
+  }
 `
 
 type Props = {

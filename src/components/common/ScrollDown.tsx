@@ -1,11 +1,19 @@
 import styled from '@emotion/styled'
 
+import { ONLY_PC_SECTION_WIDTH } from '@components/sections/OnlyPC/OnlyPC'
+
+import { breakpoint } from '@styles/theme'
+
 const Wrapper = styled.div`
   position: fixed;
   bottom: 12px;
   left: 50%;
 
   transform: translateX(-50%);
+
+  @media (min-width: ${breakpoint}px) {
+    margin-left: ${ONLY_PC_SECTION_WIDTH / 2}px;
+  }
 `
 
 const Line = styled.div`

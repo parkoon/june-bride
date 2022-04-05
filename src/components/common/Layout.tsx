@@ -1,6 +1,10 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { useMediaQuery } from 'react-responsive'
 
 import { useLayoutBackgroundColor } from '@hooks/useLayoutBackgroundColor'
+
+import { breakpoint, color } from '@styles/theme'
 
 export const LAYOUT_MAX_WIDTH = 412
 const Wrapper = styled.main<{ color: string }>`
@@ -8,12 +12,15 @@ const Wrapper = styled.main<{ color: string }>`
 
   max-width: ${LAYOUT_MAX_WIDTH}px;
 
-  margin: 0 auto;
+  /* margin: 0 auto; */
 
   background: #f5f1e7;
 
   background: ${({ color }) => color};
   transition: background 0.2s linear;
+
+  border-left: 1px solid ${color.gray};
+  border-right: 1px solid ${color.gray};
 `
 
 type Props = {
@@ -21,6 +28,7 @@ type Props = {
 }
 function Layout({ children }: Props) {
   const color = useLayoutBackgroundColor()
+
   return <Wrapper color={color}>{children}</Wrapper>
 }
 
