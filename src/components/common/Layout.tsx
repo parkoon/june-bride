@@ -1,18 +1,14 @@
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { useMediaQuery } from 'react-responsive'
 
 import { useLayoutBackgroundColor } from '@hooks/useLayoutBackgroundColor'
 
-import { breakpoint, color } from '@styles/theme'
+import { color } from '@styles/theme'
 
 export const LAYOUT_MAX_WIDTH = 412
 const Wrapper = styled.main<{ color: string }>`
+  /* PC 대응 */
   width: 100%;
-
   max-width: ${LAYOUT_MAX_WIDTH}px;
-
-  /* margin: 0 auto; */
 
   background: #f5f1e7;
 
