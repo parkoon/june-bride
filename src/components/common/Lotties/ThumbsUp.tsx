@@ -9,6 +9,8 @@ import React, {
   useState,
 } from 'react'
 
+import { breakpoint } from '@styles/theme'
+
 import animationData from '../../../../public/lotties/thumbs-up.json'
 import { LottieProps } from './types'
 
@@ -25,6 +27,11 @@ const Wrapper = styled.div<{ show?: boolean }>`
   top: 50%;
 
   transform: translate(-50%, -50%);
+
+  /* PC 에서는 로띠 X, 위치 잡는데 머리아파 */
+  @media (min-width: ${breakpoint}px) {
+    display: none;
+  }
 `
 
 const ThumbsUp = forwardRef<LottieProps>((_, ref) => {

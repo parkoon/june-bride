@@ -21,6 +21,8 @@ const Header = styled.div`
     font-size: 1.1rem;
     line-height: 1.3;
   }
+
+  cursor: pointer;
 `
 const Body = styled.div`
   overflow: hidden;

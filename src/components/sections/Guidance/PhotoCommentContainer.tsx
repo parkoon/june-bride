@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 
 import CommentProfileCard from '@components/common/CommentProfileCard'
 import Input from '@components/common/Input'
+import { LAYOUT_MAX_WIDTH } from '@components/common/Layout'
 import Textarea from '@components/common/Textarea'
 
 import {
@@ -15,6 +16,9 @@ import {
 
 import Send from '@icons/Send'
 
+import { breakpoint, color } from '@styles/theme'
+
+import { ONLY_PC_SECTION_WIDTH } from '../OnlyPC/OnlyPC'
 import PhotoCommentDeletePopup from './PhotoCommentDeletePopup'
 
 const Wrapper = styled.div`
@@ -39,14 +43,26 @@ const Footer = styled.div`
 
   position: fixed;
   bottom: 0;
-  width: 100%;
   left: 0;
+  right: 0;
   padding: 0 20px;
 
   background: #fff;
 
   box-shadow: 0px -4px 20px rgba(110, 108, 108, 0.75);
   height: 132px;
+
+  /* PC 대응을 위한 처리 */
+  max-width: ${LAYOUT_MAX_WIDTH}px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: ${breakpoint}px) {
+    left: ${ONLY_PC_SECTION_WIDTH - 16}px;
+    border-left: 1px solid ${color.gray};
+    border-right: 1px solid ${color.gray};
+    box-shadow: none;
+  }
 `
 
 const Left = styled.div`

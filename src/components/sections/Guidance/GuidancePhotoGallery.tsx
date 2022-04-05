@@ -134,7 +134,6 @@ function GuidancePhotoGallery(props: Props) {
           {PHOTOS.map((key, index) => (
             <ImageWrapper key={key}>
               <Image
-                onClick={() => alert('ok')}
                 src={`/images/gallery/${index + 1}.jpg`}
                 layout="fill"
                 alt="photo"
