@@ -21,7 +21,7 @@ const ImageWrapper = styled.div`
   position: relative;
 
   width: 100%;
-  height: 50vh;
+  height: 320pxvh;
 `
 const Actions = styled.div`
   margin-top: 24px;
@@ -70,7 +70,6 @@ function GuidanceProfile(props: Props) {
     >
       <ImageWrapper>
         <Image src={image} layout="fill" alt="photo" objectFit="cover" />
-
         <TabWrapper>
           <BridgeGroomTab onChange={handleTabChange} />
         </TabWrapper>
