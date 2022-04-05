@@ -15,9 +15,6 @@ const HorizontalScroll = styled.div`
   > * {
     scroll-snap-align: center;
   }
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `
 
 export default HorizontalScroll
