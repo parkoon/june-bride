@@ -6,7 +6,7 @@ import { ITEMS } from './constants'
 
 const Wrapper = styled.section`
   background: #fff;
-  padding: 72px 20px 40px 20px;
+  padding: 72px 20px 52px 20px;
   h3 {
     font-size: 2rem;
     font-weight: bold;
