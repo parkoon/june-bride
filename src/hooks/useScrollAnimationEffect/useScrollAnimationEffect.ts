@@ -29,7 +29,6 @@ function useScrollAnimationEffect() {
     }
 
     if (window.scrollY < prevScrollHeight.current) {
-      console.log('!!', currentScene)
       // 브라우저 바운스 효과로 인해 마이너스가 되는 것을 방지(모바일)
       setCurrentScene((prev) => Math.max(0, prev - 1))
     }
