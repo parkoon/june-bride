@@ -34,6 +34,7 @@ const defaultStyle = css`
   textarea,
   button,
   select,
+  div,
   a {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
