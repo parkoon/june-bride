@@ -8,6 +8,7 @@ import { useCurrentScene } from '@hooks/useScrollAnimationEffect/context'
 import { calcValues } from '@hooks/useScrollAnimationEffect/helpers'
 
 import EnvelopeIcon from './EnvelopeIcon'
+import EnvelopMessage from './EnvelopeMessage'
 
 function Envelope() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -26,16 +27,26 @@ function Envelope() {
     opacity: 1,
   })
 
+  const [messageTransition, setMessageTransition] = useState({ y: 50 })
+
   const handleScroll = ({ detail }: any) => {
     const { scrollRatio, ...scrollHeightAntCurrentOffsetY } = detail
 
     if (!iconRef.current) return
 
+    setOpenEnvelope(scrollRatio > 0.5)
+
+    setMessageTransition((prev) => ({
+      ...prev,
+      y: calcValues({
+        values: [50, 0, { start: 0, end: 0.4 }],
+        ...scrollHeightAntCurrentOffsetY,
+      }),
+    }))
+
     const scaleRatio =
       Math.min(LAYOUT_MAX_WIDTH, window.innerWidth) /
       iconRef.current.clientWidth
-
-    setOpenEnvelope(scrollRatio > 0.2)
 
     setIconTransition((prev) => ({
       ...prev,
@@ -90,6 +101,7 @@ function Envelope() {
     >
       {inScene && (
         <>
+          <EnvelopMessage {...messageTransition} />
           <EnvelopeIcon {...iconTransition} ref={iconRef} open={openEnvelope} />
           <ScrollDown opacity={openEnvelope ? 0 : 1} />
         </>
