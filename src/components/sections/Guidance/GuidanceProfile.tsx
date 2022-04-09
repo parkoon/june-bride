@@ -36,7 +36,7 @@ type Props = {
   color: string
 }
 
-const profile = {
+export const profile = {
   groom: {
     title: '신랑',
     phone: '010-3328-0917',
