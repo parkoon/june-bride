@@ -11,7 +11,7 @@ const GAP = 25
 
 function Guidance() {
   return (
-    <section>
+    <section style={{ marginTop: '-200px' }}>
       <GuidanceIntro />
 
       {letterPaperColors.map((color, index) => {
