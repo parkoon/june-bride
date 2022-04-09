@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Calendar from '@components/common/Calendar'
+import Confetti from '@components/common/Confetti'
 
 import GuidanceArticle from './GuidanceArticle'
 
@@ -22,6 +23,8 @@ function GuidanceDate(props: Props) {
       {...props}
     >
       <Calendar color={props.color} />
+
+      <Confetti />
     </GuidanceArticle>
   )
 }

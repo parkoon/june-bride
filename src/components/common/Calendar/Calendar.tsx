@@ -15,7 +15,7 @@ const Content = styled.div`
 
   margin: 0 auto;
 
-  border-radius: ${figure.borderRadius}
+  border-radius: ${figure.borderRadius};
 
   background-color: #fff;
 `
