@@ -4,6 +4,8 @@ import React from 'react'
 
 import { figure } from '@styles/theme'
 
+import MotionButton from './MotionButton'
+
 const Dim = styled.div<{ visible?: boolean }>`
   position: absolute;
   top: 0;
@@ -55,7 +57,7 @@ const Footer = styled.div`
   margin-top: 18px;
 `
 
-const Button = styled(motion.button)`
+const Button = styled(MotionButton)`
   width: 100%;
   padding: 12px;
   border-radius: ${figure.borderRadius}px;
@@ -89,12 +91,8 @@ function Popup({ title, visible, children, onCancel, onOk }: Props) {
           </Header>
           {children}
           <Footer>
-            <Cancel whileTap={{ scale: 0.9 }} onClick={onCancel}>
-              안할래요
-            </Cancel>
-            <Ok whileTap={{ scale: 0.9 }} onClick={onOk}>
-              할래요
-            </Ok>
+            <Cancel onClick={onCancel}>안할래요</Cancel>
+            <Ok onClick={onOk}>할래요</Ok>
           </Footer>
         </Content>
       </Wrapper>

@@ -9,6 +9,8 @@ import Delete from '@icons/Delete'
 
 import { figure } from '@styles/theme'
 
+import MotionButton from './MotionButton'
+
 dayjs.extend(relativeTime)
 dayjs.locale('ko')
 
@@ -49,7 +51,7 @@ const CommentAt = styled.span`
   font-weight: normal;
 `
 
-const DeleteButton = styled(motion.button)`
+const DeleteButton = styled(MotionButton)`
   width: 35px;
   height: 35px;
 `
@@ -75,7 +77,7 @@ function CommentProfileCard({
         </Header>
         <Comment>{comment}</Comment>
       </div>
-      <DeleteButton whileTap={{ scale: 0.9 }} onClick={onDeleteClick}>
+      <DeleteButton onClick={onDeleteClick}>
         <Delete />
       </DeleteButton>
     </Wrapper>

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -6,11 +7,15 @@ import BottomSheet from '@components/common/BottomSheet'
 import HorizontalScroll from '@components/common/HorizontalScroll'
 import ThumbsUp from '@components/common/Lotties/ThumbsUp'
 import { LottieProps } from '@components/common/Lotties/types'
+import MotionButton from '@components/common/MotionButton'
 
 import { useComments } from '@hooks/useComments'
 
 import Message from '@icons/Message'
 import Thumbs from '@icons/Thumbs'
+import Zoom from '@icons/Zoom'
+
+import { color, figure } from '@styles/theme'
 
 import GuidanceArticle from './GuidanceArticle'
 import PhotoCommentContainer from './PhotoCommentContainer'
@@ -67,15 +72,20 @@ const Footer = styled.div`
 const Action = styled.div`
   margin-bottom: 7px;
   padding-right: 20px;
+`
 
-  button {
-    color: #7f8c8d;
-    padding: 4px 7px;
+const ZoomButton = styled(MotionButton)`
+  display: flex;
+  padding: 4px 7px;
 
-    margin-left: -7px;
+  align-items: center;
 
-    text-decoration: underline;
+  > svg {
+    margin-right: 2px;
   }
+  color: ${color.gray};
+  border: 1px solid ${color.gray};
+  border-radius: ${figure.borderRadius}px;
 `
 
 const PHOTOS = new Array(11).fill(1)
@@ -125,9 +135,13 @@ function GuidancePhotoGallery(props: Props) {
     >
       <Content>
         <Action>
-          <button onClick={() => setIsPhotoBottomSheetVisible(true)}>
+          <ZoomButton
+            onClick={() => setIsPhotoBottomSheetVisible(true)}
+            style={{ fontSize: 10 }}
+          >
+            <Zoom />
             부담스러운 크기로 보기
-          </button>
+          </ZoomButton>
         </Action>
         <HorizontalScroll style={{ height: 380 }}>
           {PHOTOS.map((key, index) => (

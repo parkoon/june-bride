@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import mobileOnlyTrigger from 'src/helpers/mobileOnlyTrigger'
 
+import MotionButton from '../MotionButton'
 import { destination, lat, lng } from './constants'
 
 function NaverMapButton() {
@@ -13,14 +14,14 @@ function NaverMapButton() {
     )
   }
   return (
-    <motion.button whileTap={{ scale: 0.9 }} onClick={handleClick}>
+    <MotionButton onClick={handleClick}>
       <Image
         src="/images/map_naver.png"
         width={40}
         height={40}
         alt="map_naver"
       />
-    </motion.button>
+    </MotionButton>
   )
 }
 
