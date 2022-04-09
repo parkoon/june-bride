@@ -6,11 +6,7 @@ import { color } from '@styles/theme'
 import AccordionArrowIcon from './AccordionArrowIcon'
 import { useHeight } from './hooks'
 
-const Wrapper = styled.button`
-  display: block;
-  width: 100%;
-
-  text-align: left;
+const Wrapper = styled.div`
   background-color: transparent;
   padding: 20px 0;
 
