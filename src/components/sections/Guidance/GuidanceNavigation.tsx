@@ -17,7 +17,7 @@ const LOAD_HEIGHT = 50
 
 const CityBackground = styled.div`
   height: 100px;
-  width: 700%;
+  width: 800%;
   background-image: url('/images/city2.png');
   display: block;
   background-repeat: repeat-x;
@@ -26,13 +26,12 @@ const CityBackground = styled.div`
   bottom: ${LOAD_HEIGHT}px;
 
   background-size: contain;
-  transform: translateX(-543px);
 
   animation: move 20s linear infinite;
 
   @keyframes move {
     100% {
-      transform: translateX(-1800px);
+      transform: translateX(-50%);
     }
   }
 `
