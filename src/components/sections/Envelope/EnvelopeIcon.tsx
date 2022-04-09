@@ -37,6 +37,7 @@ const Wrapper = styled.div<{ open: boolean }>`
   z-index: 0;
 
   position: fixed;
+  z-index: 999;
 
   top: 50%;
   left: 50%;
