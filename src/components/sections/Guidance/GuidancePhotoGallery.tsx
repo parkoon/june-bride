@@ -108,19 +108,18 @@ function GuidancePhotoGallery(props: Props) {
   }
 
   useEffect(() => {
-    console.log('ok..')
     setThumbs(localStorage.getItem('thumbs') as ThumbsState)
   }, [])
 
   return (
     <GuidanceArticle
       header={{
-        title: 'lorem',
-        description: 'Lorem ipsum dolor \n ipsum sit.',
+        title: '사진첩',
+        description: '겨울에 야외촬영 \n 실화?',
       }}
       body={{
-        title: 'lorem',
-        description: 'Lorem ipsum dolor \n ipsum sit.',
+        title: '포토샵',
+        description: '우리를 다른 사람으로 만든 \n 놀라운 기술.',
       }}
       {...props}
     >
