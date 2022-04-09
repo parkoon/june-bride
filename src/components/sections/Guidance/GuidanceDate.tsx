@@ -13,7 +13,7 @@ function GuidanceDate(props: Props) {
   return (
     <GuidanceArticle
       header={{
-        title: '손없는 날',
+        title: '결혼하는 날',
         description: '2022년 6월 18일',
       }}
       body={{
