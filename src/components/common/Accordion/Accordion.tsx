@@ -1,10 +1,16 @@
 import styled from '@emotion/styled'
 import { ReactNode, useState } from 'react'
 
+import { color } from '@styles/theme'
+
 import AccordionArrowIcon from './AccordionArrowIcon'
 import { useHeight } from './hooks'
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
+  display: block;
+  width: 100%;
+
+  text-align: left;
   background-color: transparent;
   padding: 20px 0;
 
@@ -28,8 +34,9 @@ const Body = styled.div`
   overflow: hidden;
 
   transition: 0.4s ease;
-  p {
-    color: rgb(176, 184, 193);
+  > p,
+  > div {
+    color: ${color.gray};
     line-height: 1.3;
     padding-top: 16px;
   }
