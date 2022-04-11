@@ -2,18 +2,13 @@ import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { ReactNode, useEffect, useRef } from 'react'
 
-import { ONLY_PC_SECTION_WIDTH } from '@components/sections/OnlyPC/OnlyPC'
-
 import CloseIcon from '@icons/Close'
 
-import { breakpoint, color } from '@styles/theme'
-
 import { useScrollBlock } from '../../hooks/useScrollBlock'
-import { LAYOUT_MAX_WIDTH } from './Layout'
 import Portal from './Portal'
 
 const up = keyframes`
-  from {
+  from {    
     transform: translateY(100%);
   }
 
@@ -41,16 +36,6 @@ const Wrapper = styled.div<{ noPadding: boolean }>`
       padding-left: 0;
       padding-right: 0;
     `}
-
-  /* PC 대응을 위한 처리 */
-  max-width: ${LAYOUT_MAX_WIDTH}px;
-  margin: 0 auto;
-
-  @media (min-width: ${breakpoint}px) {
-    left: ${ONLY_PC_SECTION_WIDTH - 16}px;
-    border-left: 1px solid ${color.gray};
-    border-right: 1px solid ${color.gray};
-  }
 `
 
 const Button = styled.button`
