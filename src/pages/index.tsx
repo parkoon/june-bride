@@ -11,6 +11,7 @@ import Guidance from '@components/sections/Guidance'
 import OnlyPC from '@components/sections/OnlyPC'
 
 import useScrollAnimationEffect from '@hooks/useScrollAnimationEffect'
+import useShareKakao from '@hooks/useShareKakao'
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,9 +24,12 @@ const Home: NextPage = () => {
 
   const resetScroll = () => window.scrollTo(0, 0)
 
+  const shareKakao = useShareKakao()
+
   useEffect(() => {
     window.addEventListener('beforeunload', resetScroll)
   }, [])
+
   return (
     <Wrapper>
       <OnlyPC />
@@ -35,6 +39,8 @@ const Home: NextPage = () => {
         <Guidance />
         <FAQ />
         <ToastContainer autoClose={1500} position="top-center" />
+
+        <button onClick={shareKakao}>카카오로 공유하기</button>
       </Layout>
     </Wrapper>
   )

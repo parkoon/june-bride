@@ -40,6 +40,7 @@ function MyDocument() {
         <Main />
         <NextScript />
         <div id="bottom-sheet" />
+        <script async src="https://developers.kakao.com/sdk/js/kakao.js" />
       </body>
     </Html>
   )
