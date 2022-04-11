@@ -10,13 +10,13 @@ function MyDocument() {
         <meta name="robots" content="all" />
         <meta
           property="og:title"
-          content="🤵 박종혁 ♥️  👰🏻 김진아 결혼합니다"
+          content="&#129333; 박종혁 &#10084;&#65039; &#128112; 김진아 결혼합니다"
         />
         <meta
           property="og:description"
           content="6월 18일 토요일 오후 12시 30분 강동 루벨"
         />
-        <meta property="og:image" content="/images/wedding.png" />
+        <meta property="og:image" content="/images/og.jpg" />
         <meta property="og:url" content="https://junebride.kr" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="ko_KR" />
