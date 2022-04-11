@@ -18,12 +18,18 @@ const ImageWrapper = styled.div`
   position: relative;
 `
 
+const SlickWrapper = styled.div`
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+`
+
 const settings: Settings = {
   dots: false,
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  arrows: false,
+  arrows: true,
 }
 function PhotoDetail() {
   const [currentIndex, setCurrentIndex] = useState(1)
@@ -44,11 +50,14 @@ function PhotoDetail() {
       <ImageIndex>
         {currentIndex} / {PHOTOS.length}
       </ImageIndex>
-      <Slick {...settings} onSwipe={handleSwipe}>
-        {PHOTOS.map((key, index) => (
-          <SlickItem key={key} src={`/images/gallery/${index + 1}.jpg`} />
-        ))}
-      </Slick>
+
+      <SlickWrapper>
+        <Slick {...settings} onSwipe={handleSwipe}>
+          {PHOTOS.map((key, index) => (
+            <SlickItem key={key} src={`/images/gallery/${index + 1}.jpg`} />
+          ))}
+        </Slick>
+      </SlickWrapper>
     </>
   )
 }
@@ -64,7 +73,6 @@ function SlickItem({ src }: Props) {
         layout="fill"
         objectFit="contain"
         alt="photo"
-        priority
         onLoad={({ target }) => {
           const { naturalWidth, naturalHeight } = target as HTMLImageElement
           setPaddingTop(`calc(100% / (${naturalWidth} / ${naturalHeight})`)

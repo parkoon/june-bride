@@ -24,9 +24,7 @@ import PhotoDetail from './PhotoDetail'
 const ImageWrapper = styled.div`
   position: relative;
 
-  width: 232px;
-
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  width: 270px;
 
   img {
     border-radius: 6px;
@@ -42,7 +40,7 @@ const IndexBadge = styled.div`
   right: 5px;
   top: 5px;
 
-  min-width: 40px;
+  min-width: 45px;
   text-align: center;
 
   border-radius: 100px;
@@ -88,7 +86,7 @@ const ZoomButton = styled(MotionButton)`
   border-radius: ${figure.borderRadius}px;
 `
 
-const PHOTOS = new Array(11).fill(1)
+const PHOTOS = new Array(26).fill(1)
 type ThumbsState = 'up' | 'down' | 'none'
 type Props = {
   gap: number
@@ -151,7 +149,7 @@ function GuidancePhotoGallery(props: Props) {
                 layout="fill"
                 alt="photo"
                 objectFit="cover"
-                priority
+                // priority
               />
               <IndexBadge>
                 {index + 1}/{PHOTOS.length}

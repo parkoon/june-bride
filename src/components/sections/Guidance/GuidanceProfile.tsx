@@ -69,7 +69,13 @@ function GuidanceProfile(props: Props) {
       {...props}
     >
       <ImageWrapper>
-        <Image src={image} layout="fill" alt="photo" objectFit="contain" />
+        <Image
+          src={image}
+          layout="fill"
+          alt="photo"
+          objectFit="contain"
+          quality={100}
+        />
         <TabWrapper>
           <BridgeGroomTab onChange={handleTabChange} />
         </TabWrapper>
