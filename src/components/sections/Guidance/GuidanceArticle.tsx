@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { useEffect, useRef, useState } from 'react'
 
@@ -33,7 +34,7 @@ const Header = styled.header`
     white-space: pre-line;
   }
 `
-const Body = styled.div`
+const Body = styled.div<{ background?: string }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -47,6 +48,14 @@ const Body = styled.div`
   p {
     white-space: pre-line;
   }
+
+  ${({ background }) =>
+    background &&
+    css`
+      background-image: url(${background});
+      background-repeat: no-repeat;
+      background-size: cover;
+    `}
 `
 
 const BodyHeader = styled.div`
@@ -80,6 +89,8 @@ const Wrapper = styled.article<{ color?: string }>`
   }
 `
 
+const COLOR_ROOT_MARGIN = '0% 0% -35% 0%'
+
 type Props = {
   children: React.ReactNode
   header: {
@@ -90,13 +101,18 @@ type Props = {
     title: string
     description: string
   }
+  background?: string
   color?: string
   gap?: number
 }
-
-const COLOR_ROOT_MARGIN = '0% 0% -35% 0%'
-
-function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
+function GuidanceArticle({
+  children,
+  header,
+  body,
+  background,
+  color,
+  gap = 0,
+}: Props) {
   const [bottom, setBottom] = useState<number>(0)
 
   const colorTrigger = useChangeColorInView({
@@ -127,7 +143,7 @@ function GuidanceArticle({ children, header, body, color, gap = 0 }: Props) {
           </h3>
         </Header>
 
-        <Body>
+        <Body background={background}>
           {body && (
             <BodyHeader>
               <span>{body.title}</span>

@@ -14,6 +14,8 @@ const Wrapper = styled(motion.button)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.7);
 `
 
 const IconWrapper = styled.div`

@@ -17,19 +17,9 @@ const TabWrapper = styled.div`
   top: 7px;
   right: 7px;
 `
-const ImageWrapper = styled.div`
-  position: relative;
 
-  width: 100%;
-  height: 320px;
-`
 const Actions = styled.div`
   margin-top: 24px;
-`
-const ActionTitle = styled.span`
-  color: ${color.gray};
-  font-size: 0.9rem;
-  padding: 12px;
 `
 type Props = {
   gap: number
@@ -66,27 +56,20 @@ function GuidanceProfile(props: Props) {
         title: '연락',
         description: '멀리서 마음을 \n 표현하는 방법.',
       }}
+      background={image}
       {...props}
     >
-      <ImageWrapper>
-        <Image
-          src={image}
-          layout="fill"
-          alt="photo"
-          objectFit="contain"
-          quality={100}
-        />
-        <TabWrapper>
-          <BridgeGroomTab onChange={handleTabChange} />
-        </TabWrapper>
-      </ImageWrapper>
+      <div style={{ height: 320 }}></div>
 
       <Actions>
-        <ActionTitle>{title}에게 연락하기</ActionTitle>
         <MessageButton description={phone} />
         <CallButton description={phone} />
         <AccountCopyButton description={bank} />
       </Actions>
+
+      <TabWrapper>
+        <BridgeGroomTab onChange={handleTabChange} />
+      </TabWrapper>
     </GuidanceArticle>
   )
 }
