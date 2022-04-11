@@ -30,7 +30,7 @@ const Letter = styled.div<{ open: boolean; color: string; index: number }>`
 const Wrapper = styled.div<{ open: boolean }>`
   height: ${HEIGHT}px;
   width: ${WIDTH}px;
-  background-color: #393e46;
+  background-color: #727272;
   position: relative;
   display: flex;
   justify-content: center;
@@ -61,7 +61,7 @@ const Wrapper = styled.div<{ open: boolean }>`
 
   /* Lid when closed */
   .lid.one {
-    border-top: ${HEIGHT / 2}px solid #393e46;
+    border-top: ${HEIGHT / 2}px solid #727272;
     transform: rotateX(0deg);
     z-index: 3;
     transition-delay: 0.6s;
@@ -69,7 +69,7 @@ const Wrapper = styled.div<{ open: boolean }>`
 
   /* Lid when opened */
   .lid.two {
-    border-top: ${HEIGHT / 2}px solid #393e46;
+    border-top: ${HEIGHT / 2}px solid #727272;
     transform: rotateX(90deg);
     z-index: 1;
     transition-delay: 0.5s;
@@ -82,8 +82,8 @@ const Wrapper = styled.div<{ open: boolean }>`
     top: 0;
     left: 0;
     border-top: ${HEIGHT / 2}px solid transparent;
-    border-right: ${WIDTH / 2}px solid #00adb5;
-    border-bottom: ${HEIGHT / 2}px solid #00adb5;
+    border-right: ${WIDTH / 2}px solid #ddd;
+    border-bottom: ${HEIGHT / 2}px solid #ddd;
     border-left: ${WIDTH / 2}px solid #eeeeee;
     z-index: 3;
   }
