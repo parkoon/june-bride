@@ -46,7 +46,7 @@ export const profile = {
   bride: {
     title: '신부',
     phone: '010-4321-9302',
-    bank: '우리은행 1002-2458-658687',
+    bank: '우리은행 1002-458-658687',
     image: '/images/gallery/3.jpg',
   },
 }
