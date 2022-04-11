@@ -1,13 +1,6 @@
 import { ComponentProps } from 'react'
 
 import Accordion from '@components/common/Accordion'
-import Inline from '@components/common/Inline'
-import {
-  KakaoMapButton,
-  MapCopyButton,
-  NaverMapButton,
-} from '@components/common/Map'
-import { address } from '@components/common/Map/constants'
 
 import { letterPaperColors } from '@styles/theme'
 
@@ -18,7 +11,7 @@ export const ITEMS: ComponentProps<typeof Accordion>[] = [
   {
     category: { color: letterPaperColors[3], text: '결혼하는 날' },
     title: '결혼식 날짜와 시간이 언제인가요?',
-    content: <FAQAddress />,
+    content: '2022년 6월 18일 12시 30분.',
   },
   {
     category: { color: letterPaperColors[2], text: '오시는 길' },
@@ -28,7 +21,7 @@ export const ITEMS: ComponentProps<typeof Accordion>[] = [
   {
     category: { color: letterPaperColors[2], text: '오시는 길' },
     title: '강동역 몇 번 출구로 나와야 하나요?',
-    content: '강동역 1번 출구 입니다.',
+    content: '강동역 1번 출구.',
   },
   {
     category: { color: letterPaperColors[1], text: '프로필' },
