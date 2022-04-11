@@ -41,13 +41,13 @@ export const profile = {
     title: '신랑',
     phone: '010-3328-0917',
     bank: '신한은행 110-265-285-679',
-    image: '/images/gallery/10.jpg',
+    image: '/images/groom.png',
   },
   bride: {
     title: '신부',
     phone: '010-4321-9302',
     bank: '우리은행 1002-458-658687',
-    image: '/images/gallery/3.jpg',
+    image: '/images/bride.png',
   },
 }
 
@@ -69,7 +69,7 @@ function GuidanceProfile(props: Props) {
       {...props}
     >
       <ImageWrapper>
-        <Image src={image} layout="fill" alt="photo" objectFit="cover" />
+        <Image src={image} layout="fill" alt="photo" objectFit="contain" />
         <TabWrapper>
           <BridgeGroomTab onChange={handleTabChange} />
         </TabWrapper>
