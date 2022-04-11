@@ -40,7 +40,7 @@ const IndexBadge = styled.div`
   right: 5px;
   top: 5px;
 
-  min-width: 45px;
+  min-width: 52px;
   text-align: center;
 
   border-radius: 100px;
@@ -86,7 +86,7 @@ const ZoomButton = styled(MotionButton)`
   border-radius: ${figure.borderRadius}px;
 `
 
-const PHOTOS = new Array(26).fill(1)
+const PHOTOS = new Array(25).fill(1)
 type ThumbsState = 'up' | 'down' | 'none'
 type Props = {
   gap: number
@@ -149,7 +149,7 @@ function GuidancePhotoGallery(props: Props) {
                 layout="fill"
                 alt="photo"
                 objectFit="cover"
-                // priority
+                priority
               />
               <IndexBadge>
                 {index + 1}/{PHOTOS.length}

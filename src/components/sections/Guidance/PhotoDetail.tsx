@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Slick, { Settings } from 'react-slick'
 
-const PHOTOS = new Array(11).fill(1)
+const PHOTOS = new Array(25).fill(1)
 
 const ImageIndex = styled.div`
   position: absolute;
@@ -16,6 +16,7 @@ const ImageIndex = styled.div`
 `
 const ImageWrapper = styled.div`
   position: relative;
+  cursor: grab;
 `
 
 const SlickWrapper = styled.div`
@@ -25,11 +26,10 @@ const SlickWrapper = styled.div`
 `
 
 const settings: Settings = {
-  dots: false,
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 1,
-  arrows: true,
+  arrows: false,
 }
 function PhotoDetail() {
   const [currentIndex, setCurrentIndex] = useState(1)
