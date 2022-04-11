@@ -148,7 +148,8 @@ function GuidancePhotoGallery(props: Props) {
                 layout="fill"
                 alt="photo"
                 objectFit="cover"
-                priority
+                placeholder="blur"
+                blurDataURL={`/images/gallery/${index + 1}.jpg`}
               />
               <IndexBadge>
                 {index + 1}/{PHOTOS.length}
