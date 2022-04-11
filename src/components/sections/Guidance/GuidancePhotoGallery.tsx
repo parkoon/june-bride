@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -142,8 +141,8 @@ function GuidancePhotoGallery(props: Props) {
           </ZoomButton>
         </Action>
         <HorizontalScroll style={{ height: 380 }}>
-          {PHOTOS.map((key, index) => (
-            <ImageWrapper key={key}>
+          {PHOTOS.map((_, index) => (
+            <ImageWrapper key={`gallery-${index}`}>
               <Image
                 src={`/images/gallery/${index + 1}.jpg`}
                 layout="fill"
