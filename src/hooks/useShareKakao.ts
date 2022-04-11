@@ -14,7 +14,7 @@ function useShareKakao() {
   const shareKakao = () => {
     window.Kakao.Link.sendScrap({
       requestUrl: 'https://developers.kakao.com',
-      templateId: '74896',
+      templateId: 74896,
     })
   }
 
