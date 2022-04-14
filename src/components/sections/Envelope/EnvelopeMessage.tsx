@@ -29,7 +29,7 @@ function EnvelopeMessage({ y }: Props) {
   return (
     <Wrapper style={{ top: `${y}%` }}>
       <h2>
-        종혁 진아 결혼식에 <br />
+        종혁 &#10084;&#65039; 진아 결혼식에 <br />
         초대 합니다.
       </h2>
     </Wrapper>

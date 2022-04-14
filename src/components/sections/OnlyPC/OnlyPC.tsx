@@ -60,8 +60,8 @@ function OnlyPC() {
   return (
     <Wrapper>
       <Header>
-        <h2>열심히 일해 돈벌어</h2>
-        <h2>강남 살겠습니다!</h2>
+        <h2>함께 자리하시어</h2>
+        <h2>축복해주세요!</h2>
       </Header>
       <Image src="/images/wedding.png" alt="wedding" width={200} height={200} />
       <Footer>

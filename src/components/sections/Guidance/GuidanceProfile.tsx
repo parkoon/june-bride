@@ -36,7 +36,7 @@ export const profile = {
   bride: {
     title: '신부',
     phone: '010-4321-9302',
-    bank: '우리은행 1002-458-658687',
+    bank: '하나은행 218-890200-74107 (혼주 김준기)',
     image: '/images/bride.png',
   },
 }

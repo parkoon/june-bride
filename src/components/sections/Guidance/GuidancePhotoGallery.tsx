@@ -85,7 +85,7 @@ const ZoomButton = styled(MotionButton)`
   border-radius: ${figure.borderRadius}px;
 `
 
-const PHOTOS = new Array(25).fill(1)
+const PHOTOS = new Array(16).fill(1)
 type ThumbsState = 'up' | 'down' | 'none'
 type Props = {
   gap: number

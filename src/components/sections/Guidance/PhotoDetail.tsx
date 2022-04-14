@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import Slick, { Settings } from 'react-slick'
 
-const PHOTOS = new Array(25).fill(1)
+const PHOTOS = new Array(16).fill(1)
 
 const ImageIndex = styled.div`
   position: absolute;

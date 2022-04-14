@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
   const resetScroll = () => window.scrollTo(0, 0)
 
-  const shareKakao = useShareKakao()
+  // const shareKakao = useShareKakao()
 
   useEffect(() => {
     window.addEventListener('beforeunload', resetScroll)
@@ -40,7 +40,7 @@ const Home: NextPage = () => {
         <FAQ />
         <ToastContainer autoClose={1500} position="top-center" />
 
-        <button onClick={shareKakao}>카카오로 공유하기</button>
+        {/* <button onClick={shareKakao}>카카오로 공유하기</button> */}
       </Layout>
     </Wrapper>
   )
